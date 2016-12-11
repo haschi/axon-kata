@@ -1,13 +1,13 @@
 # language: de
-Funktionalität: Addition
+Funktionalität: Operation
   Als Benutzer eines Taschenrechner mit umgekehrt polnischer Notation
-  möchte ich zwei Zahlen addieren
-  um deren Summe zu erhalten
+  möchte ich mit zwei Zahlen eine Operation durchführen
+  um ein Berechnungsergebnis zu erhalten
 
   Grundlage:
     Angenommen ich habe einen Taschenrechner
 
-  Szenariogrundriss: : Zwei Zahlen addieren
+  Szenariogrundriss: : Operation auf zwei eingegebenen Zahlen anwenden
     Angenommen ich habe die folgenden Zahlen eingeben: <erste Zahl>, <zweite Zahl>
     Wenn ich <operiere>
     Dann werde ich als Ergebnis <Ergebnis> für die Operation <operiere> erhalten haben
@@ -19,7 +19,7 @@ Funktionalität: Addition
       | 30         | 2           | multipliziere | 60       |
       | 30         | 2           | dividiere     | 15       |
 
-  Szenariogrundriss: : Eine Zahl zum Zwischeneregbnis addieren
+  Szenariogrundriss: : Operation auf eine eingegebene Zahl und einem Berechnungsergebnus anwenden
     Angenommen ich habe ein Ergebnis von <Zwischenergebnis> für die Operation <operiere> berechnet
     Wenn ich die Zahl <Zahl> eingebe
     Und ich <operiere>
@@ -32,7 +32,7 @@ Funktionalität: Addition
       | 30               | 2    | multipliziere | 60          |
       | 30               | 2    | dividiere     | 15          |
 
-  Szenariogrundriss: : Zu wenig Operatoren eingegeben
+  Szenariogrundriss: : Operation auf eine einzelne eingegebene Zahl anwenden
     Angenommen ich habe die Zahl 30 eingegeben
     Wenn ich <operiere>
     Dann werde ich einen Fehler erhalten haben

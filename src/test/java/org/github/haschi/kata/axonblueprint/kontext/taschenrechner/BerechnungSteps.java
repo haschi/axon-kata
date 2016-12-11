@@ -16,12 +16,12 @@ public class BerechnungSteps {
     private Berechnung berechnung;
 
     @Wenn("^ich die Berechnung ansehe$")
-    public void ichDieBerechnungAnsehe() throws Throwable {
+    public void ichDieBerechnungAnsehe() {
         this.welt.berechnung = this.berechnung.abfragen(this.welt.taschenrechnerId);
     }
 
     @Dann("^werde ich folgende Ausgabe erhalten:$")
-    public void werdeIchFolgendeAusgabeErhalten(final String ausgabe) throws Throwable {
+    public void werdeIchFolgendeAusgabeErhalten(final String ausgabe) {
         assertThat(this.welt.berechnung)
                 .isEqualTo(ausgabe);
     }

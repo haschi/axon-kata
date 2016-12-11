@@ -1,7 +1,7 @@
 # language: de
 Funktionalität: Berechnung ausgeben
   Als Benutzer eines Taschenrechners mit umgekehrt polnischer Notation
-  möchte ich die Berechnung sehen
+  möchte ich die durchgeführte Berechnung sehen
   um sie kontrollieren zu können
 
   Grundlage:

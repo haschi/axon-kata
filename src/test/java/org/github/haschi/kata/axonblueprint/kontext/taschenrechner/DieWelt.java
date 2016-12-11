@@ -33,6 +33,13 @@ public class DieWelt {
         this.ereignisse.push(ereignis.getPayload());
     }
 
+    /**
+     * Speichert Ereignisse direkt im EventStore. Ereignisse werden nicht auf den EventBus gelegt!
+     *
+     * @param aggregatId
+     * @param aggregateRoot
+     * @param ereignisse
+     */
     public void speichern(final Object aggregatId, final Class<?> aggregateRoot, final Object... ereignisse) {
         // stellt Aggregat her
         final EventContainer eventContainer = Optional.ofNullable(this.eventContainers.get(aggregatId)).orElseGet(() -> {

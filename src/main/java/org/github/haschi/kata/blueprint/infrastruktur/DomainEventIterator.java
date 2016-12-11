@@ -9,6 +9,10 @@ import java.util.UUID;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * Kapselt einen DomainEventStream und macht diesen als Iterator oder Stream
+ * verfügbar.
+ */
 public class DomainEventIterator implements Iterator<DomainEventMessage> {
     private final DomainEventStream stream;
 

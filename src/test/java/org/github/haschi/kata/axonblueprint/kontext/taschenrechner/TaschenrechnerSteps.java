@@ -3,7 +3,6 @@ package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
 import cucumber.api.Transform;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
-import cucumber.api.java.de.Wenn;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.github.haschi.kata.blueprint.kontext.taschenrechner.aggregat.Taschenrechner;
 import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.*;
@@ -21,7 +20,7 @@ public class TaschenrechnerSteps {
     private CommandGateway commandGateway;
 
     @Angenommen("^ich habe einen Taschenrechner$")
-    public void ichHabeEinenTaschenrechner() throws Throwable {
+    public void ichHabeEinenTaschenrechner() {
         this.welt.taschenrechnerId = UUID.randomUUID();
         this.commandGateway.sendAndWait(ImmutableErzeugeTaschenrechner.of(this.welt.taschenrechnerId));
     }
@@ -29,7 +28,7 @@ public class TaschenrechnerSteps {
     @Dann("^werde ich als Ergebnis (\\d+) für die Operation (addiere|subtrahiere|dividiere|multipliziere) erhalten haben$")
     public void werdeIchAlsErgebnisErhaltenHaben(
             final int zahl,
-            @Transform(OperationConverter.class) final char operator) throws Throwable {
+            @Transform(OperationConverter.class) final char operator) {
         assertThat(this.welt.letztesEreignis()).isEqualTo(
                 ImmutableErgebnisBerechnet.of(this.welt.taschenrechnerId, zahl, operator));
     }
@@ -37,7 +36,7 @@ public class TaschenrechnerSteps {
     @Angenommen("^ich habe ein Ergebnis von (\\d+) für die Operation (addiere|subtrahiere|dividiere|multipliziere) berechnet$")
     public void ichHabeEinErgebnisVonBerechnet(
             final int ergebnis,
-            @Transform(OperationConverter.class) final char operation) throws Throwable {
+            @Transform(OperationConverter.class) final char operation) {
         this.welt.taschenrechnerId = UUID.randomUUID();
         this.welt.speichern(this.welt.taschenrechnerId, Taschenrechner.class,
                 ImmutableTaschenrechnerErzeugt.of(this.welt.taschenrechnerId),
@@ -46,13 +45,8 @@ public class TaschenrechnerSteps {
                 ImmutableErgebnisBerechnet.of(this.welt.taschenrechnerId, ergebnis, operation));
     }
 
-    @Wenn("^ich die Zahl (\\d+) eingebe$")
-    public void ichHabeDieZahlEingebe(final int zahl) throws Throwable {
-        this.commandGateway.sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
-    }
-
     @Dann("^werde ich einen Fehler erhalten haben$")
-    public void werdeIchEinenFehlerErhaltenHaben() throws Throwable {
+    public void werdeIchEinenFehlerErhaltenHaben() {
         assertThat(this.welt.letztesEreignis())
                 .isEqualTo(ImmutableFehlerAufgetreten.of(this.welt.taschenrechnerId));
     }
