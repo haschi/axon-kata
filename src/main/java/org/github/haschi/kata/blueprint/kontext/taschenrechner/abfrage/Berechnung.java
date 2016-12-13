@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.kontext.taschenrechner.Abfrage;
+package org.github.haschi.kata.blueprint.kontext.taschenrechner.abfrage;
 
 
 import javaslang.API;
@@ -13,12 +13,17 @@ import javax.inject.Inject;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import static java.lang.String.format;
+import static java.text.MessageFormat.format;
 import static javaslang.API.*;
 
 public class Berechnung {
+
+    private final EventStore eventStore;
+
     @Inject
-    private EventStore eventStore;
+    public Berechnung(final EventStore eventStore) {
+        this.eventStore = eventStore;
+    }
 
     public String abfragen(final UUID taschenrechnerId) {
 
@@ -27,21 +32,12 @@ public class Berechnung {
                 "Taschenrechner",
                 taschenrechnerId);
 
-        // U reduce(I, (U, T) -> U, (U, U) -> U)
-
-        final String reduce = stream
+        return stream
                 .map(message ->
                         Match(message.getPayload()).of(
                                 API.Case(Predicates.instanceOf(ImmutableZahlEingegeben.class), m -> Integer.toString(m.zahl())),
-                                API.Case(Predicates.instanceOf(ImmutableErgebnisBerechnet.class), m -> format("%c => %d", m.operation(), m.wert())),
+                                API.Case(Predicates.instanceOf(ImmutableErgebnisBerechnet.class), m -> format("{0} => {1,number}", m.operation(), m.wert())),
                                 Case($(), m -> "")))
                 .reduce("", (String left, String right) -> left.isEmpty() ? right : left + " " + right);
-
-        return reduce;
-    }
-
-    private class Ansicht {
-        StringBuilder stringBuilder;
-        String ergebnis;
     }
 }

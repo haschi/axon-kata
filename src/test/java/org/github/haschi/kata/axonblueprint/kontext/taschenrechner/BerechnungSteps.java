@@ -2,7 +2,7 @@ package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
 
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.Abfrage.Berechnung;
+import org.github.haschi.kata.blueprint.kontext.taschenrechner.abfrage.Berechnung;
 
 import javax.inject.Inject;
 

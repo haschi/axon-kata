@@ -5,6 +5,7 @@ import org.axonframework.domain.DomainEventStream;
 import org.axonframework.eventstore.EventStore;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -35,15 +36,18 @@ public class DomainEventIterator implements Iterator<DomainEventMessage> {
     @Override
     public boolean hasNext() {
         return this.stream.hasNext();
-
     }
 
     @Override
     public DomainEventMessage next() {
-        final DomainEventMessage message = this.stream.peek();
-        this.stream.next();
+        if (hasNext()) {
+            final DomainEventMessage message = this.stream.peek();
+            this.stream.next();
 
-        return message;
+            return message;
+        }
+
+        throw new NoSuchElementException();
     }
 
     public Stream<DomainEventMessage> stream() {
