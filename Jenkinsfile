@@ -1,7 +1,9 @@
 node {
     stage('build') {
         echo "Hello World"
-        sh 'mvn clean package'
+        withMaven(maven: 'M3') {
+            sh 'mvn clean package'
+        }
     }
 
     stage('test') {
