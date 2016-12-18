@@ -20,7 +20,6 @@ public class OperationSteps {
     public void ichHabeDieZahlEingeben(
             final List<Integer> zahlen) {
         for (final Integer zahl : zahlen) {
-            System.out.printf("Parameter: %d%n", zahl);
             this.commandGateway.sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
         }
     }
