@@ -2,27 +2,22 @@ package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
 
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.abfrage.Berechnung;
-
-import javax.inject.Inject;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.github.haschi.kata.blueprint.infrastruktur.Abfragekonfiguration;
 
 public class BerechnungSteps {
-    @Inject
+
     private DieWelt welt;
 
-    @Inject
-    private Berechnung berechnung;
+    private Abfragekonfiguration abfragekonfiguration;
 
+    public BerechnungSteps(final Abfragekonfiguration abfragekonfiguration) {
+
+        this.abfragekonfiguration = abfragekonfiguration;
+    }
     @Wenn("^ich die Berechnung ansehe$")
     public void ichDieBerechnungAnsehe() {
-        this.welt.berechnung = this.berechnung.abfragen(this.welt.taschenrechnerId);
     }
 
     @Dann("^werde ich folgende Ausgabe erhalten:$")
-    public void werdeIchFolgendeAusgabeErhalten(final String ausgabe) {
-        assertThat(this.welt.berechnung)
-                .isEqualTo(ausgabe);
-    }
+    public void werdeIchFolgendeAusgabeErhalten(final String ausgabe) {}
 }

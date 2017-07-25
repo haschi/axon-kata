@@ -1,6 +1,8 @@
 org.github.haschi.kata.blueprint.modellierung.de.Ereignis
 org.github.haschi.kata.blueprint.modellierung.de.Anweisung
+org.github.haschi.kata.blueprint.modellierung.de.Abfrage
 org.github.haschi.kata.blueprint.modellierung.de.Information
 org.github.haschi.kata.blueprint.modellierung.en.Command
 org.github.haschi.kata.blueprint.modellierung.en.Event
 org.github.haschi.kata.blueprint.modellierung.en.Projection
+org.github.haschi.kata.blueprint.modellierung.en.Query
