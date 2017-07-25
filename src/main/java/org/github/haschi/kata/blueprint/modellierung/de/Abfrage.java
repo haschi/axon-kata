@@ -12,4 +12,5 @@ import java.lang.annotation.Target;
         privateNoargConstructor = true,
         visibility = Value.Style.ImplementationVisibility.PUBLIC)
 public @interface Abfrage {
+    String value() default "";
 }
