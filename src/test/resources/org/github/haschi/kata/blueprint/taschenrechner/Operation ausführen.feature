@@ -1,5 +1,5 @@
 # language: de
-Funktionalität: Operation
+Funktionalität: Operation ausführen
   Als Benutzer eines Taschenrechner mit umgekehrt polnischer Notation
   möchte ich mit zwei Zahlen eine Operation durchführen
   um ein Berechnungsergebnis zu erhalten
@@ -26,11 +26,11 @@ Funktionalität: Operation
     Dann werde ich als Ergebnis <Endergebnis> für die Operation <operiere> berechnet haben
 
     Beispiele:
-     | operiere 1 | Zwischenergebnis | Zahl | operiere      | Endergebnis |
-     | addiere    | 30               | 12   | addiere       | 42          |
-     | addiere    | 30               | 12   | subtrahiere   | 18          |
-     | addiere    | 30               | 2    | multipliziere | 60          |
-     | addiere    | 30               | 2    | dividiere     | 15          |
+     | Zwischenergebnis | Zahl | operiere      | Endergebnis |
+     | 30               | 12   | addiere       | 42          |
+     | 30               | 12   | subtrahiere   | 18          |
+     | 30               | 2    | multipliziere | 60          |
+     | 30               | 2    | dividiere     | 15          |
 
   Szenariogrundriss: : Operation auf eine einzelne eingegebene Zahl anwenden
     Wenn ich die Zahl 30 eingebe

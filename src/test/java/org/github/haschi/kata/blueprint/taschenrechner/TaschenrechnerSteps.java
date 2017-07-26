@@ -34,10 +34,12 @@ public class TaschenrechnerSteps {
     public void werdeIchAlsErgebnisfürDieOperationBerechnetHaben(
             final int zahl,
             @Transform(OperationConverter.class) final char operator) {
+        throw new PendingException();
     }
 
     @Angenommen("^ich habe ein Ergebnis von (\\d+) für eine beliebige Operation berechnet$")
     public void ichHabeEinErgebnisVonFürEineBeliebigeOperationBerechnet(final int ergebnis) {
+        throw new PendingException();
     }
 
     @Dann("^werde ich einen Fehler gemacht haben$")

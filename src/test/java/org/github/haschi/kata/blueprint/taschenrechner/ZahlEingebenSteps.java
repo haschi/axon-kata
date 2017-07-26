@@ -1,10 +1,10 @@
 package org.github.haschi.kata.blueprint.taschenrechner;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 import org.github.haschi.kata.blueprint.infrastruktur.Anweisungskonfiguration;
-import org.github.haschi.kata.blueprint.taschenrechner.api.ImmutableGebeZahlEin;
 
 public class ZahlEingebenSteps {
 
@@ -18,18 +18,16 @@ public class ZahlEingebenSteps {
 
     @Angenommen("^ich habe die Zahl (\\d+) eingegeben$")
     public void ichHabeDieZahlEingegeben(final int zahl) {
-        configuration.commandGateway()
-                .sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
-    }
+        throw new PendingException();    }
 
     @Wenn("^ich die Zahl (-{0,1}\\d+) eingebe$")
     public void ichDieZahlEingebe(final int zahl) {
-        configuration.commandGateway().sendAndWait(
-                ImmutableGebeZahlEin.of(welt.taschenrechnerId, zahl));
+        throw new PendingException();
     }
 
     @Dann("^werde ich die Zahl (-{0,1}\\d+) eingeben haben$")
     public void werdeIchDieZahlEingebenHaben(final int zahl) {
+        throw new PendingException();
     }
 
     @Wenn("^ich eine beliebige Zahl eingebe$")
@@ -39,6 +37,6 @@ public class ZahlEingebenSteps {
 
     @Wenn("^ich keine Zahl eingebe$")
     public void ichKeineZahlEingebe() {
+        throw new PendingException();
     }
-
 }

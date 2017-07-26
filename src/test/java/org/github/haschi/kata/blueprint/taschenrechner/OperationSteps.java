@@ -1,9 +1,9 @@
 package org.github.haschi.kata.blueprint.taschenrechner;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Wenn;
 import org.github.haschi.kata.blueprint.infrastruktur.Anweisungskonfiguration;
-import org.github.haschi.kata.blueprint.taschenrechner.api.*;
 
 import java.util.List;
 
@@ -20,41 +20,31 @@ public class OperationSteps {
 
     @Angenommen("^ich habe die folgenden Zahlen eingeben: (.*)$")
     public void ichHabeDieFolgendenZahlenEingeben(final List<Integer> zahlen) {
-        for (final Integer zahl : zahlen) {
-            this.anweisungskonfiguration.commandGateway()
-                    .sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
-        }
+        throw new PendingException();
     }
 
     @Wenn("^ich folgende Zahlen eingebe: (.*)$")
     public void ichFolgendeZahlenEingebe(final List<Integer> zahlen) {
-        for (final Integer zahl : zahlen) {
-            this.anweisungskonfiguration.commandGateway()
-                    .sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
-        }
+        throw new PendingException();
     }
 
     @Wenn("^ich addiere$")
     public void ichAddiere() {
-        anweisungskonfiguration.commandGateway()
-                .sendAndWait(ImmutableAddiere.of(this.welt.taschenrechnerId));
+        throw new PendingException();
     }
 
     @Wenn("^ich subtrahiere")
     public void ichSubtrahiere() {
-        anweisungskonfiguration.commandGateway()
-                .sendAndWait(ImmutableSubtrahiere.of(this.welt.taschenrechnerId));
+        throw new PendingException();
     }
 
     @Wenn("^ich multipliziere")
     public void ichMultipliziere() {
-        anweisungskonfiguration.commandGateway()
-                .sendAndWait(ImmutableMultipliziere.of(this.welt.taschenrechnerId));
+        throw new PendingException();
     }
 
     @Wenn("^ich dividiere")
     public void ichDividiere() {
-        anweisungskonfiguration.commandGateway()
-                .sendAndWait(ImmutableDividiere.of(this.welt.taschenrechnerId));
+        throw new PendingException();
     }
 }
