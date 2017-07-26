@@ -1,4 +1,4 @@
-package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
+package org.github.haschi.kata.blueprint.taschenrechner;
 
 import cucumber.api.java.de.Dann;
 import org.github.haschi.kata.blueprint.infrastruktur.Abfragekonfiguration;
@@ -20,7 +20,7 @@ public class BerechnungSteps {
     }
 
     @Dann("^werde ich im Display folgende Ausgabe sehen:$")
-    public void werdeIchFolgendeAusgabeErhalten(final String ausgabe) {
+    public void werdeIchImDisplayFolgendeAusgabeSehen(final String ausgabe) {
 
         assertThat(
                 (String) abfragekonfiguration.commandGateway()

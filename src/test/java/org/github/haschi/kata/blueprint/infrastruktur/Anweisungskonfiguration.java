@@ -3,7 +3,7 @@ package org.github.haschi.kata.blueprint.infrastruktur;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.DefaultConfigurer;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.aggregat.Taschenrechner;
+import org.github.haschi.kata.blueprint.kontext.taschenrechner.domaene.Taschenrechner;
 import org.picocontainer.Startable;
 
 public class Anweisungskonfiguration implements Startable {
@@ -14,7 +14,7 @@ public class Anweisungskonfiguration implements Startable {
 
     private final Configuration konfiguration;
 
-    public Anweisungskonfiguration(final Storagelieferant storagelieferant) {
+    public Anweisungskonfiguration(final EventStoreLieferant storagelieferant) {
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
                 .configureAggregate(Taschenrechner.class)
                 .configureEventStore(c -> storagelieferant.eventBus(c))

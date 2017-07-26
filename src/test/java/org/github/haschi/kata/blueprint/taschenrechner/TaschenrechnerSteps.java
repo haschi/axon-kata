@@ -1,10 +1,9 @@
-package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
+package org.github.haschi.kata.blueprint.taschenrechner;
 
+import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
-import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.github.haschi.kata.blueprint.infrastruktur.Abfragekonfiguration;
 import org.github.haschi.kata.blueprint.infrastruktur.Anweisungskonfiguration;
 import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.ImmutableErzeugeTaschenrechner;
 
@@ -13,19 +12,14 @@ import java.util.UUID;
 public class TaschenrechnerSteps {
 
     private final Anweisungskonfiguration anweisungskonfiguration;
-    private final Abfragekonfiguration abfragekonfiguration;
     private DieWelt welt;
-
-    private CommandGateway commandGateway;
 
     public TaschenrechnerSteps(
             final DieWelt welt,
-            final Anweisungskonfiguration anweisungskonfiguration,
-            final Abfragekonfiguration abfragekonfiguration) {
+            final Anweisungskonfiguration anweisungskonfiguration) {
 
         this.welt = welt;
         this.anweisungskonfiguration = anweisungskonfiguration;
-        this.abfragekonfiguration = abfragekonfiguration;
     }
 
     @Angenommen("^ich habe einen Taschenrechner$")
@@ -37,16 +31,17 @@ public class TaschenrechnerSteps {
     }
 
     @Dann("^werde ich als Ergebnis (\\d+) für die Operation (addiere|subtrahiere|dividiere|multipliziere) berechnet haben$")
-    public void werdeIchAlsErgebnisErhaltenHaben(
+    public void werdeIchAlsErgebnisfürDieOperationBerechnetHaben(
             final int zahl,
             @Transform(OperationConverter.class) final char operator) {
     }
 
     @Angenommen("^ich habe ein Ergebnis von (\\d+) für eine beliebige Operation berechnet$")
-    public void ichHabeEinErgebnisVonBerechnet(final int ergebnis) {
+    public void ichHabeEinErgebnisVonFürEineBeliebigeOperationBerechnet(final int ergebnis) {
     }
 
     @Dann("^werde ich einen Fehler gemacht haben$")
-    public void werdeIchEinenFehlerErhaltenHaben() {
+    public void werdeIchEinenFehlerGemachtHaben() {
+        throw new PendingException();
     }
 }

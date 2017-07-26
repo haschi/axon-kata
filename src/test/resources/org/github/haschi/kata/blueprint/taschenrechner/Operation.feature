@@ -19,7 +19,7 @@ Funktionalität: Operation
       | 30         | 2           | multipliziere | 60       |
       | 30         | 2           | dividiere     | 15       |
 
-  Szenariogrundriss: : Operation auf eine eingegebene Zahl und einem Berechnungsergebnus anwenden
+  Szenariogrundriss: : Operation auf eine eingegebene Zahl und einem Berechnungsergebnis anwenden
     Angenommen ich habe ein Ergebnis von <Zwischenergebnis> für eine beliebige Operation berechnet
     Wenn ich die Zahl <Zahl> eingebe
     Und ich <operiere>
@@ -33,7 +33,7 @@ Funktionalität: Operation
      | addiere    | 30               | 2    | dividiere     | 15          |
 
   Szenariogrundriss: : Operation auf eine einzelne eingegebene Zahl anwenden
-    Angenommen ich habe die Zahl 30 eingegeben
+    Wenn ich die Zahl 30 eingebe
     Wenn ich <operiere>
     Dann werde ich einen Fehler gemacht haben
 

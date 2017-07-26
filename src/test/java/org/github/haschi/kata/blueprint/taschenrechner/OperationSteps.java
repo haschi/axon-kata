@@ -1,4 +1,4 @@
-package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
+package org.github.haschi.kata.blueprint.taschenrechner;
 
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Wenn;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class OperationSteps {
 
-    private DieWelt welt;
+    private final DieWelt welt;
     private final Anweisungskonfiguration anweisungskonfiguration;
 
     public OperationSteps(final DieWelt welt, final Anweisungskonfiguration anweisungskonfiguration) {
@@ -17,9 +17,17 @@ public class OperationSteps {
         this.welt = welt;
         this.anweisungskonfiguration = anweisungskonfiguration;
     }
+
     @Angenommen("^ich habe die folgenden Zahlen eingeben: (.*)$")
-    public void ichHabeDieZahlEingeben(
-            final List<Integer> zahlen) {
+    public void ichHabeDieFolgendenZahlenEingeben(final List<Integer> zahlen) {
+        for (final Integer zahl : zahlen) {
+            this.anweisungskonfiguration.commandGateway()
+                    .sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
+        }
+    }
+
+    @Wenn("^ich folgende Zahlen eingebe: (.*)$")
+    public void ichFolgendeZahlenEingebe(final List<Integer> zahlen) {
         for (final Integer zahl : zahlen) {
             this.anweisungskonfiguration.commandGateway()
                     .sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
@@ -48,11 +56,5 @@ public class OperationSteps {
     public void ichDividiere() {
         anweisungskonfiguration.commandGateway()
                 .sendAndWait(ImmutableDividiere.of(this.welt.taschenrechnerId));
-    }
-
-    @Angenommen("^ich habe die Zahl (\\d+) eingegeben$")
-    public void ichHabeDieZahlEingegeben(final int zahl) {
-        anweisungskonfiguration.commandGateway()
-                .sendAndWait(ImmutableGebeZahlEin.of(this.welt.taschenrechnerId, zahl));
     }
 }

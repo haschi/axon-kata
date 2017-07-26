@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.kontext.taschenrechner.aggregat;
+package org.github.haschi.kata.blueprint.kontext.taschenrechner.domaene;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;

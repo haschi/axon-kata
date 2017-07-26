@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Berechnung {
+public class Display {
     private Configuration configuration;
     private UUID taschenrechnerId;
 
     private List<String> display = new ArrayList<>();
 
-    public Berechnung() {
+    public Display() {
     }
 
     @CommandHandler
-    public String displayAblesen(final ImmutableDisplayAblesen abfrage) {
+    public String ablesen(final ImmutableDisplayAblesen abfrage) {
         return String.join(" ", display);
     }
 
