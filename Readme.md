@@ -12,11 +12,11 @@ Bietet:
 -------
 * Ein einfaches Beispiel (Abgegrenzter Kontext Taschenrechner) 
 * Testwerkzeuge und Frameworks
-  * Cucumber-JVM (Picocontainer für DI)
-  * JUnit 4.12
-  * EqualsVerifier
+  * [Cucumber-JVM](https://cucumber.io/docs/reference/jvm) ([Picocontainer](http://picocontainer.com/) für DI)
+  * [JUnit 4.12](http://junit.org/junit4/)
+  * [EqualsVerifier](http://jqno.nl/equalsverifier/)
   * Lorem Ipsum Generator
-  * AssertJ
+  * [AssertJ](http://joel-costigliola.github.io/assertj/)
 * [Javaslang](http::/www.javaslang.io)
 * [Immutables](https://immutables.github.io/) für
   * Anweisung
