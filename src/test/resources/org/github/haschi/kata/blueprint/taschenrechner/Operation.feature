@@ -10,7 +10,7 @@ Funktionalität: Operation
   Szenariogrundriss: : Operation auf zwei eingegebenen Zahlen anwenden
     Angenommen ich habe die folgenden Zahlen eingeben: <erste Zahl>, <zweite Zahl>
     Wenn ich <operiere>
-    Dann werde ich als Ergebnis <Ergebnis> für die Operation <operiere> erhalten haben
+    Dann werde ich als Ergebnis <Ergebnis> für die Operation <operiere> berechnet haben
 
     Beispiele:
       | erste Zahl | zweite Zahl | operiere      | Ergebnis |
@@ -19,23 +19,23 @@ Funktionalität: Operation
       | 30         | 2           | multipliziere | 60       |
       | 30         | 2           | dividiere     | 15       |
 
-  Szenariogrundriss: : Operation auf eine eingegebene Zahl und einem Berechnungsergebnus anwenden
-    Angenommen ich habe ein Ergebnis von <Zwischenergebnis> für die Operation <operiere> berechnet
+  Szenariogrundriss: : Operation auf eine eingegebene Zahl und einem Berechnungsergebnis anwenden
+    Angenommen ich habe ein Ergebnis von <Zwischenergebnis> für eine beliebige Operation berechnet
     Wenn ich die Zahl <Zahl> eingebe
     Und ich <operiere>
-    Dann werde ich als Ergebnis <Endergebnis> für die Operation <operiere> erhalten haben
+    Dann werde ich als Ergebnis <Endergebnis> für die Operation <operiere> berechnet haben
 
     Beispiele:
-      | Zwischenergebnis | Zahl | operiere      | Endergebnis |
-      | 30               | 12   | addiere       | 42          |
-      | 30               | 12   | subtrahiere   | 18          |
-      | 30               | 2    | multipliziere | 60          |
-      | 30               | 2    | dividiere     | 15          |
+     | operiere 1 | Zwischenergebnis | Zahl | operiere      | Endergebnis |
+     | addiere    | 30               | 12   | addiere       | 42          |
+     | addiere    | 30               | 12   | subtrahiere   | 18          |
+     | addiere    | 30               | 2    | multipliziere | 60          |
+     | addiere    | 30               | 2    | dividiere     | 15          |
 
   Szenariogrundriss: : Operation auf eine einzelne eingegebene Zahl anwenden
-    Angenommen ich habe die Zahl 30 eingegeben
+    Wenn ich die Zahl 30 eingebe
     Wenn ich <operiere>
-    Dann werde ich einen Fehler erhalten haben
+    Dann werde ich einen Fehler gemacht haben
 
     Beispiele:
       | operiere      |
@@ -43,3 +43,4 @@ Funktionalität: Operation
       | subtrahiere   |
       | multipliziere |
       | dividiere     |
+

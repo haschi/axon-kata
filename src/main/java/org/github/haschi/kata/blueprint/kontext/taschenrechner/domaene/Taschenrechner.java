@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.kontext.taschenrechner.aggregat;
+package org.github.haschi.kata.blueprint.kontext.taschenrechner.domaene;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
@@ -52,7 +52,7 @@ public class Taschenrechner {
         if (this.stack.size() >= 2) {
             apply(ImmutableErgebnisBerechnet.of(this.id, f.apply(this.stack.get(1), this.stack.get(0)), operator));
         } else {
-            apply(ImmutableFehlerAufgetreten.of(this.id));
+            apply(ImmutableFehlerAufgetreten.of(this.id, operator));
         }
     }
 

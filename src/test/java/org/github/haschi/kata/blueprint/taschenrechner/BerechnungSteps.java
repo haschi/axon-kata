@@ -1,7 +1,6 @@
-package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
+package org.github.haschi.kata.blueprint.taschenrechner;
 
 import cucumber.api.java.de.Dann;
-import cucumber.api.java.de.Wenn;
 import org.github.haschi.kata.blueprint.infrastruktur.Abfragekonfiguration;
 import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.ImmutableDisplayAblesen;
 
@@ -20,17 +19,12 @@ public class BerechnungSteps {
         this.abfragekonfiguration = abfragekonfiguration;
     }
 
-    @Wenn("^ich die Berechnung ansehe$")
-    public void ichDieBerechnungAnsehe() {
-    }
-
-    @Dann("^werde ich folgende Ausgabe erhalten:$")
-    public void werdeIchFolgendeAusgabeErhalten(final String ausgabe) {
+    @Dann("^werde ich im Display folgende Ausgabe sehen:$")
+    public void werdeIchImDisplayFolgendeAusgabeSehen(final String ausgabe) {
 
         assertThat(
                 (String) abfragekonfiguration.commandGateway()
                     .sendAndWait(ImmutableDisplayAblesen.of(welt.taschenrechnerId)))
                 .isEqualTo(ausgabe);
-
     }
 }

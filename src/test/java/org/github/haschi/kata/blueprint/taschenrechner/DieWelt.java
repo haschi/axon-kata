@@ -1,4 +1,4 @@
-package org.github.haschi.kata.axonblueprint.kontext.taschenrechner;
+package org.github.haschi.kata.blueprint.taschenrechner;
 
 import java.util.UUID;
 

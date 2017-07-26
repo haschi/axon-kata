@@ -9,4 +9,7 @@ import java.util.UUID;
 public interface FehlerAufgetreten {
     @Value.Parameter
     UUID taschenrechnerId();
+
+    @Value.Parameter
+    char operation();
 }
