@@ -10,7 +10,7 @@ Benötigt:
 
 Bietet:
 -------
-* Ein einfaches Beispiel (Abgegrenzter Kontext Taschenrechner) 
+* Ein einfaches Beispiel zum ausprogrammieren anhand vorhandener Spezifikation
 * Testwerkzeuge und Frameworks
   * [Cucumber-JVM](https://cucumber.io/docs/reference/jvm) ([Picocontainer](http://picocontainer.com/) für DI)
   * [JUnit 4.12](http://junit.org/junit4/)
@@ -29,6 +29,25 @@ Anwendung
 ---------
 
 Projekt forken bzw. klonen und branchen. Los geht's!
+
+Die Features sollten in folgender Reihenfolge implementiert werden:
+
+1. Zahl eingeben
+2. Operation ausführen
+3. Berechnung ausgeben
+
+Im Package taschenrechner.abfrage befindet sich ein rudimentäres Lesemodell Display.
+Die Schreibseite wird durch ein Aggregat Taschenrechner im Package taschenrechner.domaene
+realisiert. Anweisungen, Ereignisse und Wertobjekte befinden sich im Package
+taschenrechner.api.
+
+Die getrennte Infrastruktur für CQRS wird im Test als Anweisungskonfiguration (Schreibseite)
+und Abfragekonfiguration (Leseseite) realisiert. Schreib- und Leseseite verwenden einen
+gemeinsamen EventStore. Die Infrastruktur ist vorkonfiguriert und ist über Dependency
+Injection in den Steps verfügbar.
+
+Fehler und Anmerkungen bitte in [Github als Issue](https://github.com/haschi/axon-kata/issues)
+beschreiben.
 
 ## License
 
