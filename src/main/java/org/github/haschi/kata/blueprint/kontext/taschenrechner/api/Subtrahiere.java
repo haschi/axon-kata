@@ -1,6 +1,6 @@
 package org.github.haschi.kata.blueprint.kontext.taschenrechner.api;
 
-import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
+import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import org.github.haschi.kata.blueprint.modellierung.de.Anweisung;
 import org.immutables.value.Value;
 

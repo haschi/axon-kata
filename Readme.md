@@ -11,7 +11,8 @@ Benötigt:
 Bietet:
 -------
 * Ein einfaches Beispiel (Abgegrenzter Kontext Taschenrechner) 
-* Cucumber Integration mit
+* Testwerkzeuge und Frameworks
+  * Cucumber-JVM
   * JUnit 4.12
   * EqualsVerifier
   * Axon CDI + Weld

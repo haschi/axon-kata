@@ -1,17 +1,17 @@
 package org.github.haschi.kata.blueprint.kontext.taschenrechner.aggregat;
 
-
-import org.axonframework.commandhandling.annotation.CommandHandler;
-import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
-import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
-import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
+import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.commandhandling.model.AggregateIdentifier;
+import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.*;
 
 import java.util.LinkedList;
 import java.util.UUID;
 import java.util.function.BiFunction;
 
-public class Taschenrechner extends AbstractAnnotatedAggregateRoot<UUID> {
+import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
+
+public class Taschenrechner {
 
     @AggregateIdentifier
     private UUID id;
