@@ -52,7 +52,7 @@ public class Taschenrechner {
         if (this.stack.size() >= 2) {
             apply(ImmutableErgebnisBerechnet.of(this.id, f.apply(this.stack.get(1), this.stack.get(0)), operator));
         } else {
-            apply(ImmutableFehlerAufgetreten.of(this.id));
+            apply(ImmutableFehlerAufgetreten.of(this.id, operator));
         }
     }
 

@@ -7,7 +7,7 @@ Funktionalität: Berechnung ausgeben
   Grundlage:
     Angenommen ich habe einen Taschenrechner
 
-  Szenario: Einfache Berechnung ausgeben
+  Szenario: Berechnung mit einem Operator
     Angenommen ich habe die Zahl 1 eingegeben
     Angenommen ich habe die Zahl 2 eingegeben
     Angenommen ich addiere
@@ -27,4 +27,11 @@ Funktionalität: Berechnung ausgeben
     Dann werde ich folgende Ausgabe erhalten:
     """
     1 2 3 + => 5 - => -4
+    """
+  Szenario: Eingabe eines Operators mit zuwenigen Operatoren
+    Angenommen ich habe die Zahl 1 eingegeben
+    Angenommen ich addiere
+    Dann werde ich folgende Ausgabe erhalten:
+    """
+    1 + => ERROR
     """

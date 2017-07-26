@@ -21,10 +21,11 @@ public class Abfragekonfiguration implements Startable {
         final EventHandlingConfiguration eventHandler = new EventHandlingConfiguration()
                 .registerEventHandler(configuration -> berechnung);
 
+
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
                 .registerCommandHandler(configuration -> berechnung)
                 .registerModule(eventHandler)
-                .configureEmbeddedEventStore(c -> storagelieferant.storageEngine())
+                .configureEventStore(c -> storagelieferant.eventBus(c))
                 .buildConfiguration();
     }
 

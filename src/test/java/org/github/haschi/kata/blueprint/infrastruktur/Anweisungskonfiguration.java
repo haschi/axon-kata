@@ -17,7 +17,7 @@ public class Anweisungskonfiguration implements Startable {
     public Anweisungskonfiguration(final Storagelieferant storagelieferant) {
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
                 .configureAggregate(Taschenrechner.class)
-                .configureEmbeddedEventStore(configuration -> storagelieferant.storageEngine())
+                .configureEventStore(c -> storagelieferant.eventBus(c))
                 .buildConfiguration();
     }
 

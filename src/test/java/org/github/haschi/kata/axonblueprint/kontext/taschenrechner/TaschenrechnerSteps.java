@@ -36,7 +36,7 @@ public class TaschenrechnerSteps {
                 ImmutableErzeugeTaschenrechner.of(this.welt.taschenrechnerId));
     }
 
-    @Dann("^werde ich als Ergebnis (\\d+) für die Operation (addiere|subtrahiere|dividiere|multipliziere) erhalten haben$")
+    @Dann("^werde ich als Ergebnis (\\d+) für die Operation (addiere|subtrahiere|dividiere|multipliziere) berechnet haben$")
     public void werdeIchAlsErgebnisErhaltenHaben(
             final int zahl,
             @Transform(OperationConverter.class) final char operator) {
@@ -48,7 +48,7 @@ public class TaschenrechnerSteps {
             @Transform(OperationConverter.class) final char operation) {
     }
 
-    @Dann("^werde ich einen Fehler erhalten haben$")
+    @Dann("^werde ich einen Fehler gemacht haben$")
     public void werdeIchEinenFehlerErhaltenHaben() {
     }
 }
