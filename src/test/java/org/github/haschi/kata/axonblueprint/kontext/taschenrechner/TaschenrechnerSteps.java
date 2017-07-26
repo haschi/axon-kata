@@ -42,10 +42,8 @@ public class TaschenrechnerSteps {
             @Transform(OperationConverter.class) final char operator) {
     }
 
-    @Angenommen("^ich habe ein Ergebnis von (\\d+) für die Operation (addiere|subtrahiere|dividiere|multipliziere) berechnet$")
-    public void ichHabeEinErgebnisVonBerechnet(
-            final int ergebnis,
-            @Transform(OperationConverter.class) final char operation) {
+    @Angenommen("^ich habe ein Ergebnis von (\\d+) für eine beliebige Operation berechnet$")
+    public void ichHabeEinErgebnisVonBerechnet(final int ergebnis) {
     }
 
     @Dann("^werde ich einen Fehler gemacht haben$")

@@ -20,17 +20,17 @@ Funktionalität: Operation
       | 30         | 2           | dividiere     | 15       |
 
   Szenariogrundriss: : Operation auf eine eingegebene Zahl und einem Berechnungsergebnus anwenden
-    Angenommen ich habe ein Ergebnis von <Zwischenergebnis> für die Operation <operiere> berechnet
+    Angenommen ich habe ein Ergebnis von <Zwischenergebnis> für eine beliebige Operation berechnet
     Wenn ich die Zahl <Zahl> eingebe
     Und ich <operiere>
     Dann werde ich als Ergebnis <Endergebnis> für die Operation <operiere> berechnet haben
 
     Beispiele:
-      | Zwischenergebnis | Zahl | operiere      | Endergebnis |
-      | 30               | 12   | addiere       | 42          |
-      | 30               | 12   | subtrahiere   | 18          |
-      | 30               | 2    | multipliziere | 60          |
-      | 30               | 2    | dividiere     | 15          |
+     | operiere 1 | Zwischenergebnis | Zahl | operiere      | Endergebnis |
+     | addiere    | 30               | 12   | addiere       | 42          |
+     | addiere    | 30               | 12   | subtrahiere   | 18          |
+     | addiere    | 30               | 2    | multipliziere | 60          |
+     | addiere    | 30               | 2    | dividiere     | 15          |
 
   Szenariogrundriss: : Operation auf eine einzelne eingegebene Zahl anwenden
     Angenommen ich habe die Zahl 30 eingegeben
@@ -43,3 +43,4 @@ Funktionalität: Operation
       | subtrahiere   |
       | multipliziere |
       | dividiere     |
+

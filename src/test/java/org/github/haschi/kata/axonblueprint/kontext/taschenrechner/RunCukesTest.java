@@ -10,6 +10,6 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber/integration.json", "junit:target/cucumber/integration.xml"},
         tags = {"~@ignore"})
 @RunWith(Cucumber.class)
-public class IntegrationsTest {
+public class RunCukesTest {
 }
 
