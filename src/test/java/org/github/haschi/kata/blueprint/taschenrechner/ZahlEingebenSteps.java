@@ -4,7 +4,7 @@ import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 import org.github.haschi.kata.blueprint.infrastruktur.Anweisungskonfiguration;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.ImmutableGebeZahlEin;
+import org.github.haschi.kata.blueprint.taschenrechner.api.ImmutableGebeZahlEin;
 
 public class ZahlEingebenSteps {
 

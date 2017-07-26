@@ -12,10 +12,9 @@ Bietet:
 -------
 * Ein einfaches Beispiel (Abgegrenzter Kontext Taschenrechner) 
 * Testwerkzeuge und Frameworks
-  * Cucumber-JVM
+  * Cucumber-JVM (Picocontainer für DI)
   * JUnit 4.12
   * EqualsVerifier
-  * Axon CDI + Weld
   * Lorem Ipsum Generator
   * AssertJ
 * [Javaslang](http::/www.javaslang.io)
@@ -23,6 +22,8 @@ Bietet:
   * Anweisung
   * Ereignis
   * Information
+  * Abfrage
+  * Abgegrenzter Kontext
 
 Anwendung
 ---------

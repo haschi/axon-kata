@@ -4,7 +4,7 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.config.EventHandlingConfiguration;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.abfrage.Display;
+import org.github.haschi.kata.blueprint.taschenrechner.abfrage.Display;
 import org.picocontainer.Startable;
 
 public class Abfragekonfiguration implements Startable {

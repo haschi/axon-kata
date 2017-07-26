@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.kontext.taschenrechner.api;
+package org.github.haschi.kata.blueprint.taschenrechner.api;
 
 import org.github.haschi.kata.blueprint.modellierung.de.Ereignis;
 import org.immutables.value.Value;

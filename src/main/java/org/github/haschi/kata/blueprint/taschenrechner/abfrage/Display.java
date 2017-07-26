@@ -1,9 +1,9 @@
-package org.github.haschi.kata.blueprint.kontext.taschenrechner.abfrage;
+package org.github.haschi.kata.blueprint.taschenrechner.abfrage;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.config.Configuration;
 import org.axonframework.eventhandling.EventHandler;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.*;
+import org.github.haschi.kata.blueprint.taschenrechner.api.*;
 
 import java.util.ArrayList;
 import java.util.List;

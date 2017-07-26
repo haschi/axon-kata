@@ -5,7 +5,7 @@ import cucumber.api.Transform;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import org.github.haschi.kata.blueprint.infrastruktur.Anweisungskonfiguration;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.ImmutableErzeugeTaschenrechner;
+import org.github.haschi.kata.blueprint.taschenrechner.api.ImmutableErzeugeTaschenrechner;
 
 import java.util.UUID;
 

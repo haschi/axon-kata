@@ -3,7 +3,7 @@ package org.github.haschi.kata.blueprint.taschenrechner;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Wenn;
 import org.github.haschi.kata.blueprint.infrastruktur.Anweisungskonfiguration;
-import org.github.haschi.kata.blueprint.kontext.taschenrechner.api.*;
+import org.github.haschi.kata.blueprint.taschenrechner.api.*;
 
 import java.util.List;
 
