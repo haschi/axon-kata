@@ -1,5 +1,6 @@
 package org.github.haschi.haushaltsbuch;
 
+import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 import org.github.haschi.infrastruktur.Abfragekonfiguration;
@@ -25,7 +26,7 @@ public class InventurStepDefinition {
     }
 
     @Wenn("^ich die Inventur beginne$")
-    public void ichDieInventurBeginne() {
+    public void wenn_ich_die_inventur_beginne() {
 
         welt.aktuelleInventur = Aggregatkennung.neu();
         anweisung.commandGateway().sendAndWait(
@@ -40,5 +41,19 @@ public class InventurStepDefinition {
 
         assertThat(inventar)
             .isEqualTo(_Inventar.leer());
+    }
+
+    @Angenommen("^ich habe mit der Inventur begonnen$")
+    public void ichHabeMitDerInventurBegonnen()  {
+        wenn_ich_die_inventur_beginne();
+    }
+
+    @Wenn("^ich mein Umlaufvermögen \"([^\"]*)\" in Höhe von \"([^\"]*)\" erfasse$")
+    public void ichMeinUmlaufvermögenInHöheVonErfasse(String position, String währungsbetrag) {
+        final ErfasseUmlaufvermögen erfasseUmlaufvermögen = ErfasseUmlaufvermögen.builder()
+                .inventurkennung(welt.aktuelleInventur)
+                .build();
+
+        anweisung.commandGateway().sendAndWait(erfasseUmlaufvermögen);
     }
 }

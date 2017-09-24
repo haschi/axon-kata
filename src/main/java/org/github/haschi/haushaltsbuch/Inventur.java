@@ -23,4 +23,9 @@ public class Inventur {
     public void falls(InventurBegonnen ereignis) {
         id = ereignis.id();
     }
+
+    @CommandHandler
+    public void erfasseUmlaufvermögen(final ErfasseUmlaufvermögen anweisung) {
+
+    }
 }
