@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.modellierung.de;
+package org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

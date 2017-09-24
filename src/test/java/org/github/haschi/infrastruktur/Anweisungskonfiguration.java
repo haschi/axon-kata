@@ -3,7 +3,7 @@ package org.github.haschi.infrastruktur;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.DefaultConfigurer;
-import org.github.haschi.haushaltsbuch.Inventur;
+import org.github.haschi.haushaltsbuch.modell.Inventur;
 import org.picocontainer.Startable;
 
 public class Anweisungskonfiguration implements Startable {

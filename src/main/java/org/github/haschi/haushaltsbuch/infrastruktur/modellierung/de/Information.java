@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.modellierung.de;
+package org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de;
 
 import org.immutables.value.Value;
 
@@ -13,7 +13,8 @@ import java.lang.annotation.Target;
         // siehe https://github.com/immutables/immutables/issues/222
         defaultAsDefault = true,
         privateNoargConstructor = true,
-        visibility = Value.Style.ImplementationVisibility.PUBLIC)
-public @interface Abfrage {
+        builderVisibility = Value.Style.BuilderVisibility.SAME,
+        visibility = Value.Style.ImplementationVisibility.SAME)
+public @interface Information {
     String value() default "";
 }

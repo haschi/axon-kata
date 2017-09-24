@@ -3,7 +3,7 @@ package org.github.haschi.infrastruktur;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.DefaultConfigurer;
-import org.github.haschi.haushaltsbuch.InventarProjektion;
+import org.github.haschi.haushaltsbuch.projektion.InventarProjektion;
 import org.picocontainer.Startable;
 
 public class Abfragekonfiguration implements Startable {

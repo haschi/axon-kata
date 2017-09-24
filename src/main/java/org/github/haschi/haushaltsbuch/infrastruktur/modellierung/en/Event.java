@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.modellierung.en;
+package org.github.haschi.haushaltsbuch.infrastruktur.modellierung.en;
 
 import org.immutables.value.Value;
 
@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
         defaultAsDefault = true,
         privateNoargConstructor = true,
         visibility = Value.Style.ImplementationVisibility.PUBLIC)
-public @interface Query {
+public @interface Event {
     String value() default "";
 }

@@ -1,4 +1,4 @@
-package org.github.haschi.haushaltsbuch;
+package org.github.haschi.haushaltsbuch.projektion;
 
 import javaslang.collection.Stream;
 import org.axonframework.commandhandling.CommandHandler;

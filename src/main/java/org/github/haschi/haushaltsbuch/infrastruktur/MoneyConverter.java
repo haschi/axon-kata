@@ -1,4 +1,4 @@
-package org.github.haschi.haushaltsbuch;
+package org.github.haschi.haushaltsbuch.infrastruktur;
 
 import cucumber.api.Transformer;
 import org.github.haschi.haushaltsbuch.api.Währungsbetrag;

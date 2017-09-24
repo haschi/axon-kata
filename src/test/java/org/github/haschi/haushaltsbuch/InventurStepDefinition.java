@@ -5,9 +5,10 @@ import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 import org.github.haschi.haushaltsbuch.api.*;
+import org.github.haschi.haushaltsbuch.infrastruktur.MoneyConverter;
 import org.github.haschi.infrastruktur.Abfragekonfiguration;
 import org.github.haschi.infrastruktur.Anweisungskonfiguration;
-import org.github.haschi.kata.blueprint.modellierung.de.Aggregatkennung;
+import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatkennung;
 
 import java.util.List;
 

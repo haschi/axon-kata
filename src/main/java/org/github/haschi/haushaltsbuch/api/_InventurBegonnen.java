@@ -1,7 +1,7 @@
 package org.github.haschi.haushaltsbuch.api;
 
-import org.github.haschi.kata.blueprint.modellierung.de.Aggregatkennung;
-import org.github.haschi.kata.blueprint.modellierung.de.Ereignis;
+import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatkennung;
+import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Ereignis;
 import org.immutables.value.Value;
 
 @Ereignis
