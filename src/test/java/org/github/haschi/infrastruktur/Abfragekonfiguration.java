@@ -22,7 +22,7 @@ public class Abfragekonfiguration implements Startable {
 
 
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
-                .registerCommandHandler(configuration -> new InventarProjektion())
+                .registerCommandHandler(configuration -> new InventarProjektion(configuration))
 //                .registerModule(eventHandler)
                 .configureEventStore(c -> storagelieferant.eventBus(c))
                 .buildConfiguration();

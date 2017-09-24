@@ -1,5 +1,6 @@
 package org.github.haschi.haushaltsbuch;
 
+import cucumber.api.Transform;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
@@ -51,12 +52,16 @@ public class InventurStepDefinition {
     }
 
     @Wenn("^ich mein Umlaufvermögen \"([^\"]*)\" in Höhe von \"([^\"]*)\" erfasse$")
-    public void ichMeinUmlaufvermögenInHöheVonErfasse(String position, String währungsbetrag) {
-        final ErfasseUmlaufvermögen erfasseUmlaufvermögen = ErfasseUmlaufvermögen.builder()
-                .inventurkennung(welt.aktuelleInventur)
-                .build();
+    public void ichMeinUmlaufvermögenInHöheVonErfasse(
+            final String position,
+            final @Transform(MoneyConverter.class) Währungsbetrag währungsbetrag) {
 
-        anweisung.commandGateway().sendAndWait(erfasseUmlaufvermögen);
+        anweisung.commandGateway().sendAndWait(
+                ErfasseUmlaufvermögen.builder()
+                        .inventurkennung(welt.aktuelleInventur)
+                        .position(position)
+                        .währungsbetrag(währungsbetrag)
+                        .build());
     }
 
     @Dann("^werde ich folgende Vermögenswerte in meinem Inventar gelistet haben:$")

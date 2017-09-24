@@ -26,6 +26,9 @@ public class Inventur {
 
     @CommandHandler
     public void erfasseUmlaufvermögen(final ErfasseUmlaufvermögen anweisung) {
-
+        AggregateLifecycle.apply(UmlaufvermögenErfasst.builder()
+            .position(anweisung.position())
+            .währungsbetrag(anweisung.währungsbetrag())
+            .build());
     }
 }

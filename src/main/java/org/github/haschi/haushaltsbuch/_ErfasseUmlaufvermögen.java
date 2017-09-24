@@ -8,4 +8,8 @@ import org.github.haschi.kata.blueprint.modellierung.de.Anweisung;
 public interface _ErfasseUmlaufvermögen {
     @TargetAggregateIdentifier
     Aggregatkennung inventurkennung();
+
+    String position();
+
+    Währungsbetrag währungsbetrag();
 }
