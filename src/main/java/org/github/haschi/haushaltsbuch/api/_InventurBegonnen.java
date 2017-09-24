@@ -1,11 +1,11 @@
-package org.github.haschi.haushaltsbuch;
+package org.github.haschi.haushaltsbuch.api;
 
-import org.github.haschi.kata.blueprint.modellierung.de.Abfrage;
 import org.github.haschi.kata.blueprint.modellierung.de.Aggregatkennung;
+import org.github.haschi.kata.blueprint.modellierung.de.Ereignis;
 import org.immutables.value.Value;
 
-@Abfrage
-public interface _ZeigeInventar {
+@Ereignis
+public interface _InventurBegonnen {
     @Value.Parameter
     Aggregatkennung id();
 }

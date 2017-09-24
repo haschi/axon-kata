@@ -1,7 +1,8 @@
-package org.github.haschi.haushaltsbuch;
+package org.github.haschi.haushaltsbuch.api;
 
 import cucumber.deps.com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.apache.commons.lang3.StringUtils;
+import org.github.haschi.haushaltsbuch.MoneyConverter;
 import org.github.haschi.kata.blueprint.modellierung.de.Eingehüllt;
 import org.github.haschi.kata.blueprint.modellierung.de.Umhüller;
 import org.immutables.value.Value;

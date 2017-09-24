@@ -1,6 +1,7 @@
 package org.github.haschi.haushaltsbuch;
 
 import cucumber.api.Transformer;
+import org.github.haschi.haushaltsbuch.api.Währungsbetrag;
 
 public class MoneyConverter
         extends Transformer<Währungsbetrag>

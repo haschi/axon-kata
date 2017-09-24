@@ -1,4 +1,4 @@
-package org.github.haschi.haushaltsbuch;
+package org.github.haschi.haushaltsbuch.api;
 
 import javax.money.MonetaryAmount;
 import javax.money.format.MonetaryAmountFormat;

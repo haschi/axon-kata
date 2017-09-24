@@ -1,4 +1,4 @@
-package org.github.haschi.haushaltsbuch;
+package org.github.haschi.haushaltsbuch.api;
 
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import org.github.haschi.kata.blueprint.modellierung.de.Aggregatkennung;

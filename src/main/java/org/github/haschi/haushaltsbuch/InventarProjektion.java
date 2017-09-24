@@ -6,6 +6,7 @@ import org.axonframework.config.Configuration;
 import org.axonframework.eventsourcing.DomainEventMessage;
 import org.axonframework.eventsourcing.eventstore.DomainEventStream;
 import org.axonframework.eventsourcing.eventstore.EventStore;
+import org.github.haschi.haushaltsbuch.api.*;
 
 import java.util.function.Predicate;
 import java.util.stream.Collectors;

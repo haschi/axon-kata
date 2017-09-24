@@ -4,6 +4,7 @@ import cucumber.api.Transform;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
+import org.github.haschi.haushaltsbuch.api.*;
 import org.github.haschi.infrastruktur.Abfragekonfiguration;
 import org.github.haschi.infrastruktur.Anweisungskonfiguration;
 import org.github.haschi.kata.blueprint.modellierung.de.Aggregatkennung;
