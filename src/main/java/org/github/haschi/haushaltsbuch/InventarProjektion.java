@@ -30,25 +30,23 @@ public class InventarProjektion {
                 .foldLeft(builder, this::inventarErstellen)
                 .build();
 
-//                .filter(message -> UmlaufvermögenErfasst.class.isAssignableFrom(message.getPayloadType()))
-//                .map(message -> (UmlaufvermögenErfasst) message.getPayload())
-//                .forEach(ereignis -> builder.addVermoegenswerte(
-//                        Vermoegenswert.builder()
-//                                .position(ereignis.position())
-//                                .währungsbetrag(ereignis.währungsbetrag())
-//                                .build()));
-
         return builder.build();
     }
 
     private Inventar.Builder inventarErstellen(Inventar.Builder builder, DomainEventMessage message) {
 
         return Match(message.getPayload()).of(
-                Case(ereignis(UmlaufvermögenErfasst.class), h -> builder.addVermoegenswerte(
-                        Vermoegenswert.builder().position(h.position()).währungsbetrag(h.währungsbetrag()).build())),
-                Case(ereignis(SchuldErfasst.class), h -> builder.addSchulden(
-                        Schuld.builder().position(h.position()).währungsbetrag(h.währungsbetrag()).build())),
+                Case(ereignis(UmlaufvermögenErfasst.class), h -> builder.addVermoegenswerte(vermögenswertErstellen(h))),
+                Case(ereignis(SchuldErfasst.class), h -> builder.addSchulden(schuldenErstellen(h))),
                 Case($(), h -> builder));
+    }
+
+    private Schuld schuldenErstellen(SchuldErfasst h) {
+        return Schuld.builder().position(h.position()).währungsbetrag(h.währungsbetrag()).build();
+    }
+
+    private Vermoegenswert vermögenswertErstellen(UmlaufvermögenErfasst h) {
+        return Vermoegenswert.builder().position(h.position()).währungsbetrag(h.währungsbetrag()).build();
     }
 
     public static <T> Predicate<T> ereignis(final Class<? super T> type)
