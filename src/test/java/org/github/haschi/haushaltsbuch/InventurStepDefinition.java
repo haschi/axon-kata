@@ -72,4 +72,26 @@ public class InventurStepDefinition {
         assertThat(inventar.vermoegenswerte())
                 .containsExactly(vermögenswerte.toArray(new Vermoegenswert[vermögenswerte.size()]));
     }
+
+    @Wenn("^ich  meine Schulden \"([^\"]*)\" in Höhe von \"([^\"]*)\" erfasse$")
+    public void ichMeineSchuldenInHöheVonErfasse(
+            final String position,
+            final @Transform(MoneyConverter.class) Währungsbetrag währungsbetrag) {
+
+        anweisung.commandGateway().sendAndWait(
+                ErfasseSchulden.builder()
+                        .inventurkennung(welt.aktuelleInventur)
+                        .position(position)
+                        .währungsbetrag(währungsbetrag)
+                        .build());
+    }
+
+    @Dann("^werde ich folgende Schulden in meinem Inventar gelistet haben:$")
+    public void werdeIchFolgendeSchuldenInMeinemInventarGelistetHaben(final List<Schuld> schulden) {
+        final Inventar inventar = abfrage.commandGateway().sendAndWait(
+                ZeigeInventar.of(welt.aktuelleInventur));
+
+        assertThat(inventar.schulden())
+                .containsExactly(schulden.toArray(new Schuld[schulden.size()]));
+    }
 }

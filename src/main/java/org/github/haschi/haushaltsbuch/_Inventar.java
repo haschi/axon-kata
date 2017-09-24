@@ -11,4 +11,6 @@ public abstract class _Inventar {
     }
 
     public abstract List<Vermoegenswert> vermoegenswerte();
+
+    public abstract List<Schuld> schulden();
 }

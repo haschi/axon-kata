@@ -31,4 +31,12 @@ public class Inventur {
             .währungsbetrag(anweisung.währungsbetrag())
             .build());
     }
+
+    @CommandHandler
+    public void erfasseSchulden(final ErfasseSchulden anweisung) {
+        AggregateLifecycle.apply(SchuldErfasst.builder()
+                .position(anweisung.position())
+                .währungsbetrag(anweisung.währungsbetrag())
+            .build());
+    }
 }

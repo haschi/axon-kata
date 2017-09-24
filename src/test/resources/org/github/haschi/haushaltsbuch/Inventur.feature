@@ -17,7 +17,7 @@
 
   Szenario: Schulden während der Inventur erfassen
     Angenommen ich habe mit der Inventur begonnen
-    Wenn ich  meine Schulden "Autokredit" mit dem Währungsbetrag "10.569,00 EUR" erfasse
+    Wenn ich  meine Schulden "Autokredit" in Höhe von "10.569,00 EUR" erfasse
     Dann werde ich folgende Schulden in meinem Inventar gelistet haben:
     | Position   | Währungsbetrag |
     | Autokredit | 10.569,00 EUR  |
