@@ -3,6 +3,7 @@ package org.github.haschi.infrastruktur;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.DefaultConfigurer;
+import org.github.haschi.haushaltsbuch.InventarProjektion;
 import org.picocontainer.Startable;
 
 public class Abfragekonfiguration implements Startable {
@@ -21,7 +22,7 @@ public class Abfragekonfiguration implements Startable {
 
 
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
-//                .registerCommandHandler(configuration -> berechnung)
+                .registerCommandHandler(configuration -> new InventarProjektion())
 //                .registerModule(eventHandler)
                 .configureEventStore(c -> storagelieferant.eventBus(c))
                 .buildConfiguration();
