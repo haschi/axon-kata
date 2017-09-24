@@ -2,7 +2,7 @@ package org.github.haschi.kata.blueprint.modellierung.de;
 
 import org.immutables.value.Value;
 
-abstract class Umhüller<T> {
+public abstract class Umhüller<T> {
     @Value.Parameter
     public abstract T wert();
     @Override

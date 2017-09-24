@@ -11,7 +11,7 @@
   Szenario: Guthaben während der Inventur erfassen
     Angenommen ich habe mit der Inventur begonnen
     Wenn ich mein Umlaufvermögen "Bankguthaben" in Höhe von "500,00 EUR" erfasse
-    Dann werde ich folgendes Vermögen in meinem Inventar gelistet haben
+    Dann werde ich folgende Vermögenswerte in meinem Inventar gelistet haben:
     | Position       | Währungsbetrag  |
     | Bankguthaben   | 500,00 EUR      |
 

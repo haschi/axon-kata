@@ -7,6 +7,8 @@ import org.github.haschi.infrastruktur.Abfragekonfiguration;
 import org.github.haschi.infrastruktur.Anweisungskonfiguration;
 import org.github.haschi.kata.blueprint.modellierung.de.Aggregatkennung;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class InventurStepDefinition {
@@ -55,5 +57,14 @@ public class InventurStepDefinition {
                 .build();
 
         anweisung.commandGateway().sendAndWait(erfasseUmlaufvermögen);
+    }
+
+    @Dann("^werde ich folgende Vermögenswerte in meinem Inventar gelistet haben:$")
+    public void werdeIchFolgendeVermögenswerteInMeinemInventarGelistetHaben(final List<Vermoegenswert> vermögenswerte) {
+        final Inventar inventar = abfrage.commandGateway().sendAndWait(
+                ZeigeInventar.of(welt.aktuelleInventur));
+
+        assertThat(inventar.vermoegenswerte())
+                .containsExactly(vermögenswerte.toArray(new Vermoegenswert[vermögenswerte.size()]));
     }
 }

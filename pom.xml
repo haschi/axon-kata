@@ -66,6 +66,12 @@
                 <version>2.5.5</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.javamoney</groupId>
+                <artifactId>moneta</artifactId>
+                <version>1.0</version>
+            </dependency>
+
             <!-- Testing -->
             <dependency>
                 <groupId>org.assertj</groupId>
@@ -146,6 +152,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.javamoney</groupId>
+            <artifactId>moneta</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.immutables</groupId>
             <artifactId>value</artifactId>
             <scope>compile</scope>
@@ -214,7 +225,7 @@
                         <target>${maven.compiler.target}</target>
                         <useIncrementalCompilation>false</useIncrementalCompilation>
                         <verbose>false</verbose>
-                        <compilerArgument>-Werror</compilerArgument>
+                        <!--<compilerArgument>-Werror</compilerArgument>-->
                     </configuration>
                 </plugin>
 
