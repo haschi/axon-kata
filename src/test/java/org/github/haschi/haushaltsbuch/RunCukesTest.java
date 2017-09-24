@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.taschenrechner;
+package org.github.haschi.haushaltsbuch;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

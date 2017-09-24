@@ -1,4 +1,4 @@
-package org.github.haschi.kata.blueprint.infrastruktur;
+package org.github.haschi.infrastruktur;
 
 import org.axonframework.config.Configuration;
 import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;

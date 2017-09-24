@@ -1,14 +1,13 @@
-package org.github.haschi.kata.blueprint.taschenrechner.api;
+package org.github.haschi.haushaltsbuch;
 
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.github.haschi.kata.blueprint.modellierung.de.Aggregatkennung;
 import org.github.haschi.kata.blueprint.modellierung.de.Anweisung;
 import org.immutables.value.Value;
 
-import java.util.UUID;
-
 @Anweisung
-public interface ErzeugeTaschenrechner {
+public interface  _BeginneInventur {
     @TargetAggregateIdentifier
     @Value.Parameter
-    UUID id();
+    Aggregatkennung id();
 }

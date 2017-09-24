@@ -1,12 +1,11 @@
-package org.github.haschi.kata.blueprint.infrastruktur;
+package org.github.haschi.infrastruktur;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.DefaultConfigurer;
-import org.github.haschi.kata.blueprint.taschenrechner.domaene.Taschenrechner;
 import org.picocontainer.Startable;
 
-public class Anweisungskonfiguration implements Startable {
+public class Abfragekonfiguration implements Startable {
 
     public CommandGateway commandGateway() {
         return konfiguration.commandGateway();
@@ -14,9 +13,16 @@ public class Anweisungskonfiguration implements Startable {
 
     private final Configuration konfiguration;
 
-    public Anweisungskonfiguration(final EventStoreLieferant storagelieferant) {
+    public Abfragekonfiguration(final EventStoreLieferant storagelieferant) {
+        //Display berechnung = new Display();
+
+        // final EventHandlingConfiguration eventHandler = new EventHandlingConfiguration()
+//                .registerEventHandler(configuration -> berechnung);
+
+
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
-                .configureAggregate(Taschenrechner.class)
+//                .registerCommandHandler(configuration -> berechnung)
+//                .registerModule(eventHandler)
                 .configureEventStore(c -> storagelieferant.eventBus(c))
                 .buildConfiguration();
     }

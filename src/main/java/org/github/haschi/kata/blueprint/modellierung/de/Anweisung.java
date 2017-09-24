@@ -6,7 +6,10 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
-@Value.Style(jdkOnly = true,
+@Value.Style(
+        typeAbstract = "_*",
+        typeImmutable = "*",
+        jdkOnly = true,
         // siehe https://github.com/immutables/immutables/issues/222
         defaultAsDefault = true,
         privateNoargConstructor = true,
