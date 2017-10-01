@@ -40,4 +40,11 @@ public class Inventur {
                 .währungsbetrag(anweisung.währungsbetrag())
             .build());
     }
+
+    @CommandHandler
+    public void erfasseInventar(final ErfasseInventar anweisung) {
+        AggregateLifecycle.apply(InventarErfasst.builder()
+                .inventar(anweisung.inventar())
+                .build());
+    }
 }

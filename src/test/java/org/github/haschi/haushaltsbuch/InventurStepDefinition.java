@@ -1,5 +1,7 @@
 package org.github.haschi.haushaltsbuch;
 
+import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
@@ -11,6 +13,8 @@ import org.github.haschi.infrastruktur.Anweisungskonfiguration;
 import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatkennung;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -95,5 +99,57 @@ public class InventurStepDefinition {
 
         assertThat(inventar.schulden())
                 .containsExactly(schulden.toArray(new Schuld[schulden.size()]));
+    }
+
+    @Wenn("^ich folgendes Inventar erfasse:$")
+    public void ichFolgendesInventarErfasse(final List<Inventarposition> zeilen) {
+
+        Inventar inventar = Inventar.builder()
+                .addAllUmlaufvermögen(zeilen.stream()
+                        .filter(z -> z.untergruppe.equals("Umlaufvermögen"))
+                        .map(z -> Vermoegenswert.builder()
+                                .position(z.position)
+                                .währungsbetrag(z.währungsbetrag)
+                                .build())
+                        .collect(Collectors.toList()))
+                .addAllAnlagevermögen(zeilen.stream()
+                        .filter(z -> z.untergruppe.equals("Anlagevermögen"))
+                        .map(z -> Vermoegenswert.builder()
+                                .position(z.position)
+                                .währungsbetrag(z.währungsbetrag)
+                                .build())
+                        .collect(Collectors.toList()))
+                .addAllSchulden(zeilen.stream()
+                    .filter(z -> z.untergruppe.equals("Langfristige Schulden"))
+                    .map(z -> Schuld.builder()
+                            .position(z.position)
+                            .währungsbetrag(z.währungsbetrag)
+                            .build())
+                    .collect(Collectors.toList()))
+                .build();
+
+        anweisung.commandGateway().sendAndWait(
+        ErfasseInventar.builder()
+                .für(welt.aktuelleInventur)
+                .inventar(inventar)
+                .build());
+    }
+
+    @Dann("^werde ich folgendes Eigenkapital ermittelt haben:$")
+    public void werdeIchFolgendesEigenkapitalErmitteltHaben(DataTable reinvermögen) throws Throwable {
+
+        Map<String, Währungsbetrag> map = reinvermögen.asMap(String.class, Währungsbetrag.class);
+
+        Reinvermögen erwartungswert = Reinvermögen.builder()
+                .summeDerSchulden(map.get("Summe der Schulden"))
+                .summeDesVermögens(map.get("Summe des Vermögens"))
+                .build();
+
+
+        final Inventar inventar = abfrage.commandGateway().sendAndWait(LeseInventar.builder()
+                .ausInventur(welt.aktuelleInventur)
+                .build());
+
+        assertThat(inventar.reinvermögen()).isEqualTo(erwartungswert);
     }
 }

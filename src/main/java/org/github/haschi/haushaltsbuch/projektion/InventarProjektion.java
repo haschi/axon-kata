@@ -7,6 +7,7 @@ import org.axonframework.eventsourcing.DomainEventMessage;
 import org.axonframework.eventsourcing.eventstore.DomainEventStream;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.github.haschi.haushaltsbuch.api.*;
+import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.en.Command;
 
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -32,6 +33,25 @@ public class InventarProjektion {
                 .build();
 
         return builder.build();
+    }
+
+    @CommandHandler
+    public Inventar leseInventar(final LeseInventar abfrage) {
+        final EventStore eventStore = konfiguration.eventStore();
+        DomainEventStream eventStream = eventStore.readEvents(abfrage.ausInventur().toString());
+
+        final Inventar.Builder builder = Inventar.builder();
+        Stream.ofAll(eventStream.asStream().collect(Collectors.toList()))
+                .foldLeft(builder, this::ie)
+                .build();
+
+        return builder.build();
+    }
+
+    private Inventar.Builder ie(Inventar.Builder builder, DomainEventMessage message) {
+        return Match(message.getPayload()).of(
+                Case(ereignis(InventarErfasst.class), h -> builder.from(h.inventar())),
+                Case($(), h -> builder));
     }
 
     private Inventar.Builder inventarErstellen(Inventar.Builder builder, DomainEventMessage message) {
