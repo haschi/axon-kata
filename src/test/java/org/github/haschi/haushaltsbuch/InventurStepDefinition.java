@@ -5,7 +5,9 @@ import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
+import cucumber.api.java.de.Und;
 import cucumber.api.java.de.Wenn;
+import org.axonframework.commandhandling.CommandExecutionException;
 import org.github.haschi.haushaltsbuch.api.*;
 import org.github.haschi.haushaltsbuch.infrastruktur.MoneyConverter;
 import org.github.haschi.infrastruktur.Abfragekonfiguration;
@@ -17,6 +19,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class InventurStepDefinition {
 
@@ -70,12 +74,21 @@ public class InventurStepDefinition {
                         .build());
     }
 
-    @Dann("^werde ich folgende Vermögenswerte in meinem Inventar gelistet haben:$")
+    @Dann("^werde ich folgendes Umlaufvermögen in meinem Inventar gelistet haben:$")
     public void werdeIchFolgendeVermögenswerteInMeinemInventarGelistetHaben(final List<Vermoegenswert> vermögenswerte) {
         final Inventar inventar = abfrage.commandGateway().sendAndWait(
-                ZeigeInventar.of(welt.aktuelleInventur));
+                LeseInventar.of(welt.aktuelleInventur));
 
-        assertThat(inventar.vermoegenswerte())
+        assertThat(inventar.umlaufvermögen())
+                .containsExactly(vermögenswerte.toArray(new Vermoegenswert[vermögenswerte.size()]));
+    }
+
+    @Dann("^werde ich folgendes Anlagevermögen in meinem Inventar gelistet haben:$")
+    public void werdeIchFolgendesAnlagevermögenInMeinemInventarGelistetHaben(final List<Vermoegenswert> vermögenswerte) {
+        final Inventar inventar = abfrage.commandGateway().sendAndWait(
+                LeseInventar.of(welt.aktuelleInventur));
+
+        assertThat(inventar.anlagevermögen())
                 .containsExactly(vermögenswerte.toArray(new Vermoegenswert[vermögenswerte.size()]));
     }
 
@@ -95,7 +108,7 @@ public class InventurStepDefinition {
     @Dann("^werde ich folgende Schulden in meinem Inventar gelistet haben:$")
     public void werdeIchFolgendeSchuldenInMeinemInventarGelistetHaben(final List<Schuld> schulden) {
         final Inventar inventar = abfrage.commandGateway().sendAndWait(
-                ZeigeInventar.of(welt.aktuelleInventur));
+                LeseInventar.of(welt.aktuelleInventur));
 
         assertThat(inventar.schulden())
                 .containsExactly(schulden.toArray(new Schuld[schulden.size()]));
@@ -135,7 +148,12 @@ public class InventurStepDefinition {
                 .build());
     }
 
-    @Dann("^werde ich folgendes Eigenkapital ermittelt haben:$")
+    @Und("^ich folgendes Inventar erfassen will:$")
+    public void ichFolgendesInventarErfassenWill(final List<Inventarposition> zeilen) {
+        welt.intention = () -> ichFolgendesInventarErfasse(zeilen);
+    }
+
+    @Dann("^werde ich folgendes Reinvermögen ermittelt haben:$")
     public void werdeIchFolgendesEigenkapitalErmitteltHaben(DataTable reinvermögen) throws Throwable {
 
         Map<String, Währungsbetrag> map = reinvermögen.asMap(String.class, Währungsbetrag.class);
@@ -145,11 +163,37 @@ public class InventurStepDefinition {
                 .summeDesVermögens(map.get("Summe des Vermögens"))
                 .build();
 
-
-        final Inventar inventar = abfrage.commandGateway().sendAndWait(LeseInventar.builder()
-                .ausInventur(welt.aktuelleInventur)
-                .build());
+        final Inventar inventar = abfrage.commandGateway().sendAndWait(
+                LeseInventar.of(welt.aktuelleInventur));
 
         assertThat(inventar.reinvermögen()).isEqualTo(erwartungswert);
     }
+
+    @Wenn("^ich die Inventur beenden will$")
+    public void ichDieInventurBeendenWill() {
+        welt.intention = () -> anweisung.commandGateway().sendAndWait(
+            BeendeInventur.builder()
+                    .von(welt.aktuelleInventur)
+                    .build());
+    }
+
+    @Dann("^werde ich die Fehlermeldung \"([^\"]*)\" erhalten$")
+    public void werdeIchDieFehlermeldungErhalten(String fehlermeldung) {
+        assert welt.intention != null : "Es wurde kein Schritt ausgeführt, der eine Intention ausdrückt.";
+
+        assertThat(catchThrowable(welt.intention))
+                .hasCause(new InventurAusnahme(fehlermeldung));
+    }
+
+    @Und("^ich habe folgendes Inventar erfasst:$")
+    public void ichHabeFolgendesInventarErfasst(final List<Inventarposition> zeilen) {
+        ichFolgendesInventarErfasse(zeilen);
+    }
+
+    @Wenn("^ich die Inventur beende$")
+    public void ichDieInventurBeende() {
+        anweisung.commandGateway().sendAndWait(
+                BeendeInventur.of(welt.aktuelleInventur));
+    }
+
 }

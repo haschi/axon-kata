@@ -12,6 +12,10 @@ public class Inventur {
     @AggregateIdentifier
     private Aggregatkennung id;
 
+    private boolean inventarErfasst = false;
+
+    private boolean beendet = false;
+
     public Inventur() {
     }
 
@@ -42,9 +46,33 @@ public class Inventur {
     }
 
     @CommandHandler
-    public void erfasseInventar(final ErfasseInventar anweisung) {
+    public void erfasseInventar(final ErfasseInventar anweisung) throws InventurAusnahme {
+        if (beendet) {
+            throw new InventurAusnahme("Inventur bereits beendet");
+        }
+
         AggregateLifecycle.apply(InventarErfasst.builder()
                 .inventar(anweisung.inventar())
                 .build());
+    }
+
+    @EventSourcingHandler
+    public void falls(final InventarErfasst ereignis) {
+        inventarErfasst = true;
+    }
+
+    @CommandHandler
+    public void beendeInventur(final BeendeInventur anweisung) throws InventurAusnahme {
+
+        if(!inventarErfasst) {
+            throw new InventurAusnahme("Kein Inventar erfasst");
+        }
+
+        AggregateLifecycle.apply(InventurBeendet.builder().build());
+    }
+
+    @EventSourcingHandler
+    public void falls(final InventurBeendet ereignis) {
+        beendet = true;
     }
 }
