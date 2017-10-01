@@ -40,7 +40,7 @@ Funktionalität: Inventur
     Wenn ich die Inventur beenden will
     Dann werde ich die Fehlermeldung "Kein Inventar erfasst" erhalten
 
-  Szenario: Inventur mit Inventar beenden
+  Szenario: Inventar erfassen nach Beenden der Inventur
     Angenommen ich habe mit der Inventur begonnen
     Und ich habe folgendes Inventar erfasst:
       | Gruppe   | Untergruppe           | Position         | Währungsbetrag |
