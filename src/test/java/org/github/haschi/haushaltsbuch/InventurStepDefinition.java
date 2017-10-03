@@ -111,7 +111,7 @@ public class InventurStepDefinition {
                 LeseInventar.of(welt.aktuelleInventur));
 
         assertThat(inventar.schulden())
-                .containsExactly(schulden.toArray(new Schuld[schulden.size()]));
+                .isEqualTo(Schulden.of(schulden));
     }
 
     @Wenn("^ich folgendes Inventar erfasse:$")
@@ -132,13 +132,13 @@ public class InventurStepDefinition {
                                 .währungsbetrag(z.währungsbetrag)
                                 .build())
                         .collect(Collectors.toList())))
-                .addAllSchulden(zeilen.stream()
+                .schulden(Schulden.of(zeilen.stream()
                     .filter(z -> z.untergruppe.equals("Langfristige Schulden"))
                     .map(z -> Schuld.builder()
                             .position(z.position)
                             .währungsbetrag(z.währungsbetrag)
                             .build())
-                    .collect(Collectors.toList()))
+                    .collect(Collectors.toList())))
                 .build();
 
         anweisung.commandGateway().sendAndWait(

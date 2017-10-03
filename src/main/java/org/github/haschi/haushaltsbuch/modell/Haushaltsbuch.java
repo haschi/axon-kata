@@ -25,10 +25,7 @@ public class Haushaltsbuch {
 
         Währungsbetrag anlagevermögen = inventar.anlagevermögen().summe();
         Währungsbetrag umlaufvermögen = inventar.umlaufvermögen().summe();
-
-        Währungsbetrag darlehen = inventar.schulden().stream()
-                .map(Schuld::währungsbetrag)
-                .reduce(Währungsbetrag.NullEuro(), (r, l) -> Währungsbetrag.of(r.wert().add(l.wert())));
+        Währungsbetrag darlehen = inventar.schulden().summe();
 
         Währungsbetrag eigenkapital = Währungsbetrag.of(
                 anlagevermögen.wert()
