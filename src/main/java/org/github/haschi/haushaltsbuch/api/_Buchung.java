@@ -6,13 +6,14 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Information
 
 @XStreamConverter(BuchungConverter.class)
 @Information
-public interface _Buchung {
-    
+public interface _Buchung
+{
     String buchungstext();
-    
+
     Währungsbetrag betrag();
 
-    static Buchung leer() {
+    static Buchung leer()
+    {
         return Buchung.builder()
                 .buchungstext(StringUtils.EMPTY)
                 .betrag(_Währungsbetrag.NullEuro())

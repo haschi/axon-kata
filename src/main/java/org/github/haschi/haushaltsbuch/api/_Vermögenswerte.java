@@ -5,6 +5,7 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Umhüller;
 import org.immutables.value.Value;
 import org.javamoney.moneta.function.MonetaryFunctions;
 
+import java.util.Collections;
 import java.util.List;
 
 @Value.Immutable
@@ -15,5 +16,9 @@ public abstract class _Vermögenswerte extends Umhüller<List<Vermoegenswert>> {
                 .map(m -> m.währungsbetrag().wert())
                 .reduce(MonetaryFunctions.sum())
                 .orElse(Währungsbetrag.NullEuro().wert()));
+    }
+
+    public static Vermögenswerte leer() {
+        return Vermögenswerte.of(Collections.emptyList());
     }
 }

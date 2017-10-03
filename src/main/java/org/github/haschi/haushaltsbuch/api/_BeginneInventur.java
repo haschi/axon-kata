@@ -6,7 +6,8 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Anweisung;
 import org.immutables.value.Value;
 
 @Anweisung
-public interface  _BeginneInventur {
+public interface _BeginneInventur
+{
     @TargetAggregateIdentifier
     @Value.Parameter
     Aggregatkennung id();

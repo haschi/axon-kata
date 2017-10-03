@@ -5,7 +5,8 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatken
 import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Anweisung;
 
 @Anweisung
-public interface _ErfasseInventar {
+public interface _ErfasseInventar
+{
     @TargetAggregateIdentifier
     Aggregatkennung für();
 

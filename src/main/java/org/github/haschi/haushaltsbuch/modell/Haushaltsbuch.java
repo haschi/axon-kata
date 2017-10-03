@@ -12,7 +12,8 @@ public class Haushaltsbuch {
     @AggregateIdentifier
     private Aggregatkennung id;
 
-    public Haushaltsbuch() {}
+    public Haushaltsbuch() {
+    }
 
     @CommandHandler
     public Haushaltsbuch(final BeginneHaushaltsbuchführung anweisung) {
@@ -23,38 +24,34 @@ public class Haushaltsbuch {
 
         Inventar inventar = anweisung.inventar();
 
-        Währungsbetrag anlagevermögen = inventar.anlagevermögen().summe();
-        Währungsbetrag umlaufvermögen = inventar.umlaufvermögen().summe();
-        Währungsbetrag darlehen = inventar.schulden().summe();
-
         Währungsbetrag eigenkapital = Währungsbetrag.of(
-                anlagevermögen.wert()
-                        .add(umlaufvermögen.wert())
-                        .subtract(darlehen.wert()));
+                inventar.anlagevermögen().summe().wert()
+                        .add(inventar.umlaufvermögen().summe().wert())
+                        .subtract(inventar.schulden().summe().wert()));
 
         Eröffnungsbilanzkonto eröffnungsbilanz = Eröffnungsbilanzkonto.builder()
                 .addHaben(Buchung.builder()
                         .buchungstext("Anlagevermögen (AV)")
-                        .betrag(anlagevermögen)
+                        .betrag(inventar.anlagevermögen().summe())
                         .build())
                 .addHaben(Buchung.builder()
-                            .buchungstext("Umlaufvermögen (UV)")
-                            .betrag(umlaufvermögen)
+                        .buchungstext("Umlaufvermögen (UV)")
+                        .betrag(inventar.umlaufvermögen().summe())
                         .build())
                 .addSoll(Buchung.builder()
-                    .buchungstext("Eigenkapital (EK)")
-                    .betrag(eigenkapital)
-                    .build())
+                        .buchungstext("Eigenkapital (EK)")
+                        .betrag(eigenkapital)
+                        .build())
                 .addSoll(Buchung.builder()
-                            .buchungstext("Fremdkapital (FK)")
-                            .betrag(darlehen)
+                        .buchungstext("Fremdkapital (FK)")
+                        .betrag(inventar.schulden().summe())
                         .build())
                 .build();
 
         AggregateLifecycle.apply(
                 EröffnungsbilanzkontoErstellt.builder()
-                .eröffnungsbilanzkonto(eröffnungsbilanz)
-                .build());
+                        .eröffnungsbilanzkonto(eröffnungsbilanz)
+                        .build());
     }
 
     @EventSourcingHandler
