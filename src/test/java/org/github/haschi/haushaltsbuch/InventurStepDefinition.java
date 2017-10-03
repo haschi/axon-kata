@@ -50,7 +50,7 @@ public class InventurStepDefinition {
     public void wirdMeinInventarLeerSein() throws Throwable {
 
         final Inventar inventar = abfrage.commandGateway().sendAndWait(
-                ZeigeInventar.of(welt.aktuelleInventur));
+                LeseInventar.of(welt.aktuelleInventur));
 
         assertThat(inventar)
             .isEqualTo(_Inventar.leer());
@@ -89,7 +89,7 @@ public class InventurStepDefinition {
                 LeseInventar.of(welt.aktuelleInventur));
 
         assertThat(inventar.anlagevermögen())
-                .containsExactly(vermögenswerte.toArray(new Vermoegenswert[vermögenswerte.size()]));
+                .isEqualTo(Vermögenswerte.of(vermögenswerte));
     }
 
     @Wenn("^ich  meine Schulden \"([^\"]*)\" in Höhe von \"([^\"]*)\" erfasse$")
@@ -125,13 +125,13 @@ public class InventurStepDefinition {
                                 .währungsbetrag(z.währungsbetrag)
                                 .build())
                         .collect(Collectors.toList()))
-                .addAllAnlagevermögen(zeilen.stream()
+                .anlagevermögen(Vermögenswerte.of(zeilen.stream()
                         .filter(z -> z.untergruppe.equals("Anlagevermögen"))
                         .map(z -> Vermoegenswert.builder()
                                 .position(z.position)
                                 .währungsbetrag(z.währungsbetrag)
                                 .build())
-                        .collect(Collectors.toList()))
+                        .collect(Collectors.toList())))
                 .addAllSchulden(zeilen.stream()
                     .filter(z -> z.untergruppe.equals("Langfristige Schulden"))
                     .map(z -> Schuld.builder()

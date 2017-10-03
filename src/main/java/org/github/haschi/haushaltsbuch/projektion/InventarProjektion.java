@@ -23,19 +23,6 @@ public class InventarProjektion {
     }
 
     @CommandHandler
-    public Inventar zeigeInventar(final ZeigeInventar abfrage) {
-        final EventStore eventStore = konfiguration.eventStore();
-        final DomainEventStream domainEventStream = eventStore.readEvents(abfrage.id().toString());
-
-        final Inventar.Builder builder = Inventar.builder();
-        Stream.ofAll(domainEventStream.asStream().collect(Collectors.toList()))
-                .foldLeft(builder, this::inventarErstellen)
-                .build();
-
-        return builder.build();
-    }
-
-    @CommandHandler
     public Inventar leseInventar(final LeseInventar abfrage) {
         final EventStore eventStore = konfiguration.eventStore();
         DomainEventStream eventStream = eventStore.readEvents(abfrage.ausInventur().toString());
@@ -51,14 +38,6 @@ public class InventarProjektion {
     private Inventar.Builder ie(Inventar.Builder builder, DomainEventMessage message) {
         return Match(message.getPayload()).of(
                 Case(ereignis(InventarErfasst.class), h -> builder.from(h.inventar())),
-                Case($(), h -> builder));
-    }
-
-    private Inventar.Builder inventarErstellen(Inventar.Builder builder, DomainEventMessage message) {
-
-        return Match(message.getPayload()).of(
-                Case(ereignis(UmlaufvermögenErfasst.class), h -> builder.addVermoegenswerte(vermögenswertErstellen(h))),
-                Case(ereignis(SchuldErfasst.class), h -> builder.addSchulden(schuldenErstellen(h))),
                 Case($(), h -> builder));
     }
 
