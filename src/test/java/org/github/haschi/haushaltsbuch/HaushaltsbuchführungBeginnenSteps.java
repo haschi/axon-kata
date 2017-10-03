@@ -1,6 +1,8 @@
 package org.github.haschi.haushaltsbuch;
 
+import cucumber.api.DataTable;
 import cucumber.api.PendingException;
+import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 import org.github.haschi.haushaltsbuch.api.BeginneHaushaltsbuchführung;
 import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatkennung;
@@ -25,5 +27,9 @@ public class HaushaltsbuchführungBeginnenSteps {
                 BeginneHaushaltsbuchführung.builder()
                         .id(welt.aktuellesHaushaltsbuch)
                         .build());
+    }
+
+    @Dann("^werde ich folgendes Eröffnungsbilanzkonto im Hauptbuch erstellt haben:$")
+    public void werdeIchFolgendesEröffnungsbilanzkontoImHauptbuchErstelltHaben(final DataTable eröffnungsbilanzkonto) {
     }
 }
