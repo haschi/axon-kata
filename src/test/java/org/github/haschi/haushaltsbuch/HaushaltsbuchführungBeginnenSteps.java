@@ -1,27 +1,30 @@
 package org.github.haschi.haushaltsbuch;
 
-import cucumber.api.DataTable;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
-import org.axonframework.eventsourcing.DomainEventMessage;
-import org.github.haschi.haushaltsbuch.api.BeginneHaushaltsbuchführung;
-import org.github.haschi.haushaltsbuch.api.Eröffnungsbilanzkonto;
-import org.github.haschi.haushaltsbuch.api.EröffnungsbilanzkontoErstellt;
+import org.github.haschi.haushaltsbuch.api.*;
 import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatkennung;
+import org.github.haschi.infrastruktur.Abfragekonfiguration;
 import org.github.haschi.infrastruktur.Anweisungskonfiguration;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HaushaltsbuchführungBeginnenSteps {
     private DieWelt welt;
     private Anweisungskonfiguration anweisung;
+    private Abfragekonfiguration abfrage;
 
-    public HaushaltsbuchführungBeginnenSteps(final DieWelt welt, final Anweisungskonfiguration anweisung) {
+    public HaushaltsbuchführungBeginnenSteps(
+            final DieWelt welt,
+            final Anweisungskonfiguration anweisung,
+            final Abfragekonfiguration abfrage) {
 
         this.welt = welt;
         this.anweisung = anweisung;
+        this.abfrage = abfrage;
     }
 
     @Wenn("^ich die Haushaltsbuchführung beginne$")
@@ -29,9 +32,14 @@ public class HaushaltsbuchführungBeginnenSteps {
 
         welt.aktuellesHaushaltsbuch = Aggregatkennung.neu();
 
+        Inventar inventar =  abfrage.commandGateway().sendAndWait(
+                LeseInventar.of(welt.aktuelleInventur));
+
+
         anweisung.konfiguration().commandGateway().sendAndWait(
                 BeginneHaushaltsbuchführung.builder()
                         .id(welt.aktuellesHaushaltsbuch)
+                        .inventar(inventar)
                         .build());
     }
 
@@ -47,6 +55,15 @@ public class HaushaltsbuchführungBeginnenSteps {
                 .orElseThrow(() -> new Exception("Kein Eröffnungsbilanzkonto erstellt"));
 
         assertThat(eröffnungsbilanzkontoErstellt.eröffnungsbilanzkonto())
-                .isEqualTo(Eröffnungsbilanzkonto.builder().build());
+                .isEqualTo(Eröffnungsbilanzkonto.builder()
+                        .addAllSoll(eröffnungsbilanzkonto.stream()
+                                .map(zeile -> zeile.soll)
+                                .filter(buchung -> !buchung.equals(_Buchung.leer()))
+                                .collect(Collectors.toList()))
+                        .addAllHaben(eröffnungsbilanzkonto.stream()
+                                .map(zeile -> zeile.haben)
+                                .filter(buchung -> !buchung.equals(_Buchung.leer()))
+                                .collect(Collectors.toList()))
+                        .build());
     }
 }
