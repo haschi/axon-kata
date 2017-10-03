@@ -5,7 +5,8 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatken
 import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Anweisung;
 
 @Anweisung
-public interface _ErfasseUmlaufvermögen {
+public interface _ErfasseUmlaufvermögen
+{
     @TargetAggregateIdentifier
     Aggregatkennung inventurkennung();
 

@@ -16,7 +16,7 @@ final class DeutschenWährungsbetragAnalysieren
         this.format = MonetaryFormats.getAmountFormat(Locale.GERMANY);
     }
 
-    public final MonetaryAmount aus(final String währungsbetrag)
+    public MonetaryAmount aus(final String währungsbetrag)
     {
         return this.format.parse(währungsbetrag);
     }

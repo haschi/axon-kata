@@ -10,15 +10,19 @@ import java.util.List;
 
 @Value.Immutable
 @Eingehüllt
-public abstract class _Vermögenswerte extends Umhüller<List<Vermoegenswert>> {
-    public Währungsbetrag summe() {
-        return Währungsbetrag.of(wert().stream()
-                .map(m -> m.währungsbetrag().wert())
-                .reduce(MonetaryFunctions.sum())
-                .orElse(Währungsbetrag.NullEuro().wert()));
+public abstract class _Vermögenswerte extends Umhüller<List<Vermoegenswert>>
+{
+    public Währungsbetrag summe()
+    {
+        return Währungsbetrag.of(
+                wert().stream()
+                        .map(m -> m.währungsbetrag().wert())
+                        .reduce(MonetaryFunctions.sum())
+                        .orElse(Währungsbetrag.NullEuro().wert()));
     }
 
-    public static Vermögenswerte leer() {
+    public static Vermögenswerte leer()
+    {
         return Vermögenswerte.of(Collections.emptyList());
     }
 }

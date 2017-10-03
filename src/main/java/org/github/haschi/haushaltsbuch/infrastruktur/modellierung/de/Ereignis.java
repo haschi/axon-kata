@@ -13,6 +13,7 @@ import java.lang.annotation.Target;
         defaultAsDefault = true,
         privateNoargConstructor = true,
         visibility = Value.Style.ImplementationVisibility.PUBLIC)
-public @interface Ereignis {
+public @interface Ereignis
+{
     String value() default "";
 }

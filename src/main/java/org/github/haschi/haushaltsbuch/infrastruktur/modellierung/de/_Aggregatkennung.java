@@ -8,7 +8,8 @@ import java.util.UUID;
 @Eingehüllt
 public abstract class _Aggregatkennung extends Umhüller<UUID>
 {
-    public static Aggregatkennung neu() {
+    public static Aggregatkennung neu()
+    {
         return Aggregatkennung.of(UUID.randomUUID());
     }
 

@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
         defaultAsDefault = true,
         privateNoargConstructor = true,
         visibility = Value.Style.ImplementationVisibility.PUBLIC)
-public @interface Anweisung {
+public @interface Anweisung
+{
     String value() default "";
 }

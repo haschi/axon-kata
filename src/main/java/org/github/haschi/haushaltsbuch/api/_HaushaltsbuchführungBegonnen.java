@@ -4,6 +4,7 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatken
 import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Ereignis;
 
 @Ereignis
-public interface _HaushaltsbuchführungBegonnen {
+public interface _HaushaltsbuchführungBegonnen
+{
     Aggregatkennung id();
 }

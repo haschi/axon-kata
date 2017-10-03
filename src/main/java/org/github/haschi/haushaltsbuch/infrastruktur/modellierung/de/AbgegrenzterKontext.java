@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.PACKAGE)
 @Retention(RetentionPolicy.SOURCE)
-public @interface AbgegrenzterKontext {
+public @interface AbgegrenzterKontext
+{
     String value();
 }

@@ -15,6 +15,7 @@ import java.lang.annotation.Target;
         privateNoargConstructor = true,
         builderVisibility = Value.Style.BuilderVisibility.SAME,
         visibility = Value.Style.ImplementationVisibility.SAME)
-public @interface Information {
+public @interface Information
+{
     String value() default "";
 }

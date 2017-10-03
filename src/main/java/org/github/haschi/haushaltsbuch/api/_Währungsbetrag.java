@@ -17,8 +17,10 @@ import java.util.Locale;
 @Value.Immutable
 @XStreamConverter(MoneyConverter.class)
 @Eingehüllt
-public abstract class _Währungsbetrag extends Umhüller<MonetaryAmount> {
-    public static Währungsbetrag parse(final String s) {
+public abstract class _Währungsbetrag extends Umhüller<MonetaryAmount>
+{
+    public static Währungsbetrag parse(final String s)
+    {
         if (StringUtils.isEmpty(s))
         {
             throw new IllegalArgumentException("Währungsbetrag ist leer");
@@ -26,22 +28,20 @@ public abstract class _Währungsbetrag extends Umhüller<MonetaryAmount> {
 
         final DeutschenWährungsbetragAnalysieren analysieren = new DeutschenWährungsbetragAnalysieren();
         final MonetaryAmount betrag = analysieren.aus(s);
-//        if (betrag.isNegative())
-//        { // NOPMD LoD TODO
-//            throw new IllegalArgumentException();
-//        }
 
         return Währungsbetrag.of(betrag);
     }
 
-    public static Währungsbetrag NullEuro() {
+    public static Währungsbetrag NullEuro()
+    {
         return Währungsbetrag.of(
-        Money.of(0, Monetary.getCurrency(Locale.GERMANY)));
+                Money.of(0, Monetary.getCurrency(Locale.GERMANY)));
     }
 
     @Override
-    public String toString() {
-        MonetaryAmountFormat germanFormat = MonetaryFormats.getAmountFormat(Locale.GERMANY);
-        return germanFormat.format(wert());
+    public String toString()
+    {
+        final MonetaryAmountFormat deutschesFormat = MonetaryFormats.getAmountFormat(Locale.GERMANY);
+        return deutschesFormat.format(wert());
     }
 }

@@ -5,7 +5,8 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatken
 import org.immutables.value.Value;
 
 @Abfrage
-public interface _LeseInventar {
+public interface _LeseInventar
+{
     @Value.Parameter
     Aggregatkennung ausInventur();
 }
