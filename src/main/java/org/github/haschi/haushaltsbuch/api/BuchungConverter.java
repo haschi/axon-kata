@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class BuchungConverter extends Transformer<Buchung>
 {
     @Override
-    public Buchung transform(String s)
+    public Buchung transform(final String s)
     {
         final Pattern pattern = Pattern.compile("^(.*) (-?(?:\\d{1,3}\\.)?\\d{1,3},\\d{2} EUR)$");
         final Matcher matcher = pattern.matcher(s);

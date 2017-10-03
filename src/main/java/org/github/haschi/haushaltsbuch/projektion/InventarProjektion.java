@@ -56,7 +56,7 @@ public class InventarProjektion
                 Case($(), h -> builder));
     }
 
-    public static <T> Predicate<T> ereignis(final Class<? super T> type)
+    private static <T> Predicate<T> ereignis(final Class<? super T> type)
     {
         return (T obj) -> type.isAssignableFrom(obj.getClass());
     }
