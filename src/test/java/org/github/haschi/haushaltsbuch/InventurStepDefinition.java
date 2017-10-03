@@ -80,7 +80,7 @@ public class InventurStepDefinition {
                 LeseInventar.of(welt.aktuelleInventur));
 
         assertThat(inventar.umlaufvermögen())
-                .containsExactly(vermögenswerte.toArray(new Vermoegenswert[vermögenswerte.size()]));
+                .isEqualTo(Vermögenswerte.of(vermögenswerte));
     }
 
     @Dann("^werde ich folgendes Anlagevermögen in meinem Inventar gelistet haben:$")
@@ -118,13 +118,13 @@ public class InventurStepDefinition {
     public void ichFolgendesInventarErfasse(final List<Inventarposition> zeilen) {
 
         Inventar inventar = Inventar.builder()
-                .addAllUmlaufvermögen(zeilen.stream()
+                .umlaufvermögen(Vermögenswerte.of(zeilen.stream()
                         .filter(z -> z.untergruppe.equals("Umlaufvermögen"))
                         .map(z -> Vermoegenswert.builder()
                                 .position(z.position)
                                 .währungsbetrag(z.währungsbetrag)
                                 .build())
-                        .collect(Collectors.toList()))
+                        .collect(Collectors.toList())))
                 .anlagevermögen(Vermögenswerte.of(zeilen.stream()
                         .filter(z -> z.untergruppe.equals("Anlagevermögen"))
                         .map(z -> Vermoegenswert.builder()
