@@ -6,4 +6,5 @@ import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.de.Aggregatken
 public class DieWelt {
     public Aggregatkennung aktuelleInventur;
     public ThrowableAssert.ThrowingCallable intention;
+    public Aggregatkennung aktuellesHaushaltsbuch;
 }
