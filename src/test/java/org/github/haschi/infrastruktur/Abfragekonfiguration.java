@@ -6,35 +6,33 @@ import org.axonframework.config.DefaultConfigurer;
 import org.github.haschi.haushaltsbuch.projektion.InventarProjektion;
 import org.picocontainer.Startable;
 
-public class Abfragekonfiguration implements Startable {
+public class Abfragekonfiguration implements Startable
+{
 
-    public CommandGateway commandGateway() {
+    public CommandGateway commandGateway()
+    {
         return konfiguration.commandGateway();
     }
 
     private final Configuration konfiguration;
 
-    public Abfragekonfiguration(final EventStoreLieferant storagelieferant) {
-        //Display berechnung = new Display();
-
-        // final EventHandlingConfiguration eventHandler = new EventHandlingConfiguration()
-//                .registerEventHandler(configuration -> berechnung);
-
-
+    public Abfragekonfiguration(final EventStoreLieferant storagelieferant)
+    {
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
-                .registerCommandHandler(configuration -> new InventarProjektion(configuration))
-//                .registerModule(eventHandler)
-                .configureEventStore(c -> storagelieferant.eventBus(c))
+                .registerCommandHandler(InventarProjektion::new)
+                .configureEventStore(storagelieferant::eventBus)
                 .buildConfiguration();
     }
 
     @Override
-    public void start() {
+    public void start()
+    {
         konfiguration.start();
     }
 
     @Override
-    public void stop() {
+    public void stop()
+    {
         konfiguration.shutdown();
     }
 }

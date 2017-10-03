@@ -7,33 +7,39 @@ import org.github.haschi.haushaltsbuch.modell.Haushaltsbuch;
 import org.github.haschi.haushaltsbuch.modell.Inventur;
 import org.picocontainer.Startable;
 
-public class Anweisungskonfiguration implements Startable {
+public class Anweisungskonfiguration implements Startable
+{
 
-    public CommandGateway commandGateway() {
+    public CommandGateway commandGateway()
+    {
         return konfiguration.commandGateway();
     }
 
-    public Configuration konfiguration() {
+    public Configuration konfiguration()
+    {
         return konfiguration;
     }
 
     private final Configuration konfiguration;
 
-    public Anweisungskonfiguration(final EventStoreLieferant storagelieferant) {
+    public Anweisungskonfiguration(final EventStoreLieferant storagelieferant)
+    {
         this.konfiguration = DefaultConfigurer.defaultConfiguration()
                 .configureAggregate(Inventur.class)
                 .configureAggregate(Haushaltsbuch.class)
-                .configureEventStore(c -> storagelieferant.eventBus(c))
+                .configureEventStore(storagelieferant::eventBus)
                 .buildConfiguration();
     }
 
     @Override
-    public void start() {
+    public void start()
+    {
         konfiguration.start();
     }
 
     @Override
-    public void stop() {
+    public void stop()
+    {
         konfiguration.shutdown();
     }
 }

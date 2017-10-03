@@ -6,26 +6,36 @@ import org.axonframework.config.Configuration;
 import org.axonframework.eventsourcing.DomainEventMessage;
 import org.axonframework.eventsourcing.eventstore.DomainEventStream;
 import org.axonframework.eventsourcing.eventstore.EventStore;
-import org.github.haschi.haushaltsbuch.api.*;
-import org.github.haschi.haushaltsbuch.infrastruktur.modellierung.en.Command;
+import org.github.haschi.haushaltsbuch.api.Inventar;
+import org.github.haschi.haushaltsbuch.api.InventarErfasst;
+import org.github.haschi.haushaltsbuch.api.LeseInventar;
+import org.github.haschi.haushaltsbuch.api.Schuld;
+import org.github.haschi.haushaltsbuch.api.SchuldErfasst;
+import org.github.haschi.haushaltsbuch.api.Schulden;
+import org.github.haschi.haushaltsbuch.api.UmlaufvermögenErfasst;
+import org.github.haschi.haushaltsbuch.api.Vermoegenswert;
+import org.github.haschi.haushaltsbuch.api.Vermögenswerte;
 
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static javaslang.API.*;
 
-public class InventarProjektion {
+public class InventarProjektion
+{
 
     private final Configuration konfiguration;
 
-    public InventarProjektion(final Configuration konfiguration) {
+    public InventarProjektion(final Configuration konfiguration)
+    {
         this.konfiguration = konfiguration;
     }
 
     @CommandHandler
-    public Inventar leseInventar(final LeseInventar abfrage) {
+    public Inventar leseInventar(final LeseInventar abfrage)
+    {
         final EventStore eventStore = konfiguration.eventStore();
-        DomainEventStream eventStream = eventStore.readEvents(abfrage.ausInventur().toString());
+        final DomainEventStream eventStream = eventStore.readEvents(abfrage.ausInventur().toString());
 
         final Inventar.Builder builder = Inventar.builder()
                 .anlagevermögen(Vermögenswerte.leer())
@@ -33,24 +43,17 @@ public class InventarProjektion {
                 .schulden(Schulden.leer());
 
         Stream.ofAll(eventStream.asStream().collect(Collectors.toList()))
-                .foldLeft(builder, this::ie)
+                .foldLeft(builder, InventarProjektion::ie)
                 .build();
 
         return builder.build();
     }
 
-    private Inventar.Builder ie(Inventar.Builder builder, DomainEventMessage message) {
+    private static Inventar.Builder ie(final Inventar.Builder builder, final DomainEventMessage message)
+    {
         return Match(message.getPayload()).of(
                 Case(ereignis(InventarErfasst.class), h -> builder.from(h.inventar())),
                 Case($(), h -> builder));
-    }
-
-    private Schuld schuldenErstellen(SchuldErfasst h) {
-        return Schuld.builder().position(h.position()).währungsbetrag(h.währungsbetrag()).build();
-    }
-
-    private Vermoegenswert vermögenswertErstellen(UmlaufvermögenErfasst h) {
-        return Vermoegenswert.builder().position(h.position()).währungsbetrag(h.währungsbetrag()).build();
     }
 
     public static <T> Predicate<T> ereignis(final Class<? super T> type)

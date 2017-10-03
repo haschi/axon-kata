@@ -11,6 +11,7 @@ import java.lang.annotation.Target;
         defaultAsDefault = true,
         privateNoargConstructor = true,
         visibility = Value.Style.ImplementationVisibility.PUBLIC)
-public @interface Command {
+public @interface Command
+{
     String value() default "";
 }

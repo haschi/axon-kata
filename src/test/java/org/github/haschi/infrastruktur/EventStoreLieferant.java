@@ -6,12 +6,14 @@ import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.eventsourcing.eventstore.inmemory.InMemoryEventStorageEngine;
 
-public class EventStoreLieferant {
+public class EventStoreLieferant
+{
 
     private final EventStorageEngine engine = new InMemoryEventStorageEngine();
     private final EmbeddedEventStore eventStore = new EmbeddedEventStore(engine);
 
-    public EventStore eventBus(Configuration konfiguration) {
+    public EventStore eventBus(final Configuration konfiguration)
+    {
         return eventStore;
     }
 }
